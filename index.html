@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>szuwar700 — biuro wycen i ofert dla stolarni</title>
+<meta name="description" content="Przesyłasz zapytanie klienta, dostajesz gotową wycenę, rysunek z wymiarami, zestawienie formatek i ofertę PDF pod swoją marką — w dwa dni robocze. Dla stolarni 1–5 osób. Pierwsze 3 wyceny bezpłatnie.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16161B" media="(prefers-color-scheme: dark)">
+
+<!-- ADRES STRONY — uzupełnić po publikacji -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="szuwar700">
+<meta property="og:title" content="szuwar700 — biuro wycen i ofert dla stolarni">
+<meta property="og:description" content="Zapytanie od klienta zamieniamy w wycenę, rysunek i ofertę PDF z Twoim logo. Ty decydujesz, co trafia do klienta.">
+<meta property="og:image" content="og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23F7F5F0'/%3E%3Cpath d='M12 44h40M12 20v24M52 20v24' stroke='%232452C4' stroke-width='3' fill='none'/%3E%3Cpath d='M20 20h24v18H20z' fill='none' stroke='%2315151A' stroke-width='3'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script>document.documentElement.className += " js";</script>
+
+<style>
+/* ==========================================================================
+   szuwar700 — biuro wycen i ofert dla stolarni
+   Pomysł: strona wygląda jak sam produkt — kartka oferty na biurku,
+   z liniami wymiarowymi w kolorze, jakim CAD rysuje wymiary.
+   ========================================================================== */
+
+:root{
+  --papier:#F7F5F0;         /* kartka                                   */
+  --biurko:#E9E5DD;         /* blat pod kartką, drugi plan              */
+  --karta:#FFFFFF;
+  --atrament:#15151A;       /* tekst                                    */
+  --grafit:#5B5A64;         /* tekst drugorzędny                        */
+  --linia:#D7D3CA;
+  --linia-2:#C3BFB6;
+
+  --wymiar:#2452C4;         /* niebieski linii wymiarowych — jedyny akcent */
+  --wymiar-ciemny:#1B3F9B;
+  --wymiar-tlo:#E9EEFB;
+
+  --dobrze:#2F6B3F;
+
+  --disp:"Archivo",ui-sans-serif,system-ui,sans-serif;
+  --sans:"Source Sans 3",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  --wrap:1180px;
+  --pad:clamp(20px,5vw,32px);
+  --gap:clamp(60px,9vw,112px);
+  --r:4px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --papier:#16161B; --biurko:#1E1E25; --karta:#1C1C22;
+    --atrament:#EDEBE6; --grafit:#A2A1AA; --linia:#2E2E37; --linia-2:#3B3B46;
+    --wymiar:#7FA2FF; --wymiar-ciemny:#A9C0FF; --wymiar-tlo:#1F2740; --dobrze:#7FC48F;
+  }
+}
+:root[data-theme="dark"]{
+  --papier:#16161B; --biurko:#1E1E25; --karta:#1C1C22;
+  --atrament:#EDEBE6; --grafit:#A2A1AA; --linia:#2E2E37; --linia-2:#3B3B46;
+  --wymiar:#7FA2FF; --wymiar-ciemny:#A9C0FF; --wymiar-tlo:#1F2740; --dobrze:#7FC48F;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.001ms!important}
+}
+body{
+  background:var(--papier);color:var(--atrament);
+  font-family:var(--sans);font-size:clamp(16px,1.05vw,17.5px);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.1;letter-spacing:-.01em;text-wrap:balance}
+p{max-width:66ch}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul,ol{list-style:none}
+:focus-visible{outline:2px solid var(--wymiar);outline-offset:3px;border-radius:2px}
+
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--wymiar);color:#fff;padding:12px 20px;font-weight:600}
+.skip:focus{left:12px;top:12px}
+
+/* ---------- powtarzalne: etykieta, linia wymiarowa, karta ---------- */
+
+.etyk{
+  display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.72rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--wymiar);
+}
+.etyk::before{content:"";width:22px;height:1px;background:var(--wymiar)}
+
+/* linia wymiarowa jak na rysunku: strzałki na końcach, wartość w środku */
+.wymiar{display:flex;align-items:center;gap:12px;color:var(--grafit);font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;margin:14px 0 22px}
+.wymiar::before,.wymiar::after{content:"";flex:1;height:1px;background:var(--linia-2);position:relative}
+.wymiar::before{background:linear-gradient(90deg,var(--linia-2),var(--linia-2))}
+.wymiar span{white-space:nowrap}
+.wymiar.lewa::before{display:none}
+
+.sek-naglowek{max-width:680px}
+.sek-naglowek h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin-top:12px}
+.sek-naglowek p{margin-top:16px;color:var(--grafit);font-size:1.05rem}
+
+.karta{background:var(--karta);border:1px solid var(--linia);border-radius:var(--r);padding:clamp(22px,3vw,30px)}
+
+section{padding:var(--gap) 0;position:relative}
+section+section{border-top:1px solid var(--linia)}
+
+/* ---------- przyciski ---------- */
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 24px;border-radius:var(--r);font-weight:600;font-size:.98rem;
+  border:1px solid transparent;transition:background .2s,color .2s,border-color .2s,transform .15s;
+}
+.btn:active{transform:translateY(1px)}
+.btn-main{background:var(--wymiar);color:#fff;border-color:var(--wymiar)}
+.btn-main:hover{background:var(--wymiar-ciemny);border-color:var(--wymiar-ciemny)}
+.btn-ghost{border-color:var(--linia-2);color:var(--atrament);background:var(--karta)}
+.btn-ghost:hover{border-color:var(--wymiar);color:var(--wymiar)}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* ---------- nagłówek ---------- */
+
+.naglowek{position:sticky;top:0;z-index:90;background:color-mix(in srgb,var(--papier) 90%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--linia);transition:box-shadow .3s}
+.naglowek.stuck{box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.naglowek .wrap{display:flex;align-items:center;gap:22px;min-height:68px}
+
+.marka{display:flex;align-items:center;gap:12px;flex:none}
+.marka svg{width:34px;height:34px}
+.marka b{font-family:var(--disp);font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
+.marka b i{font-style:normal;color:var(--wymiar)}
+.marka small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--grafit);margin-top:2px}
+
+.nav{margin-left:auto;display:flex;align-items:center;gap:26px}
+.nav a{white-space:nowrap;font-size:.95rem;font-weight:600;color:var(--grafit);position:relative;padding:4px 0;transition:color .2s}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:2px;background:var(--wymiar);transition:right .25s}
+.nav a:hover{color:var(--atrament)}
+.nav a:hover::after{right:0}
+.nag-cta{flex:none}
+
+.burger{display:none;margin-left:auto;width:44px;height:44px;border:1px solid var(--linia-2);border-radius:var(--r);
+  align-items:center;justify-content:center;flex-direction:column;gap:5px;background:var(--karta)}
+.burger span{display:block;width:20px;height:2px;background:var(--atrament);transition:.25s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.menu-mobile{position:fixed;inset:0;z-index:80;background:var(--papier);padding:96px var(--pad) 40px;
+  display:flex;flex-direction:column;gap:2px;transform:translateY(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);visibility:hidden}
+.menu-mobile.open{transform:none;visibility:visible}
+.menu-mobile a{font-family:var(--disp);font-size:1.35rem;font-weight:700;padding:16px 0;border-bottom:1px solid var(--linia)}
+.menu-mobile .btn{margin-top:22px;border-bottom:0}
+
+/* ---------- hero ---------- */
+
+.hero{border-top:0;padding:clamp(44px,6vw,80px) 0 clamp(56px,7vw,96px);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(36px,6vw,80px);align-items:center}
+.hero h1{font-size:clamp(2.1rem,4.6vw,3.6rem);margin-top:18px;font-variation-settings:"wdth" 92}
+.hero h1 em{font-style:normal;color:var(--wymiar)}
+.hero .lead{margin-top:22px;font-size:1.12rem;color:var(--grafit)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-fakty{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:26px;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--grafit)}
+.hero-fakty b{color:var(--atrament);font-weight:500}
+
+/* stos: render + rysunek + kartka oferty — czyli to, co klient stolarni dostaje */
+.stos{position:relative;aspect-ratio:1.08;min-height:360px}
+.stos > *{position:absolute;border-radius:var(--r);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.14),0 2px 6px rgba(0,0,0,.08)}
+.stos .s-render{left:0;top:4%;width:74%;aspect-ratio:3/2;border:1px solid var(--linia)}
+.stos .s-render img{width:100%;height:100%;object-fit:cover}
+.stos .s-rysunek{right:0;top:0;width:46%;aspect-ratio:4/3;background:#fff;border:1px solid var(--linia-2);padding:6px}
+.stos .s-rysunek img{width:100%;height:100%;object-fit:contain}
+.stos .s-oferta{left:30%;bottom:0;width:56%;background:var(--karta);border:1px solid var(--linia);padding:16px 18px 14px}
+.s-oferta .so-nag{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grafit)}
+.s-oferta .so-logo{width:46px;height:14px;border:1.5px dashed var(--linia-2);border-radius:2px;display:grid;place-items:center;font-size:.48rem;letter-spacing:.08em;color:var(--grafit)}
+.s-oferta h4{font-size:.95rem;margin-top:10px;font-weight:700}
+.s-oferta table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.72rem}
+.s-oferta td{padding:4px 0;border-bottom:1px solid var(--linia)}
+.s-oferta td:last-child{text-align:right;white-space:nowrap;padding-left:10px;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.s-oferta tr.suma td{border-bottom:0;font-weight:700;color:var(--wymiar);padding-top:7px}
+.s-oferta .so-stop{margin-top:8px;font-size:.62rem;color:var(--grafit)}
+.stos .s-tag{position:absolute;left:0;bottom:6%;background:var(--wymiar);color:#fff;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 10px;box-shadow:none;border-radius:2px}
+
+/* wymiar na renderze — subtelny gest "tu jest 2 400" */
+.s-render .dim{position:absolute;left:8%;right:8%;bottom:9%;height:1px;background:rgba(255,255,255,.85);box-shadow:0 0 0 1px rgba(0,0,0,.18)}
+.s-render .dim::before,.s-render .dim::after{content:"";position:absolute;top:-5px;width:1px;height:11px;background:rgba(255,255,255,.85);box-shadow:0 0 0 1px rgba(0,0,0,.18)}
+.s-render .dim::before{left:0}.s-render .dim::after{right:0}
+.s-render .dim span{position:absolute;left:50%;top:-20px;transform:translateX(-50%);background:rgba(21,21,26,.78);color:#fff;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;padding:2px 7px;border-radius:2px}
+
+/* ---------- problem / dla kogo ---------- */
+
+.dla-kogo{background:var(--biurko)}
+.dk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+.dk .cytat{font-family:var(--disp);font-size:clamp(1.25rem,2.3vw,1.6rem);font-weight:600;line-height:1.3;border-left:3px solid var(--wymiar);padding-left:20px;color:var(--atrament)}
+.dk .cytat small{display:block;margin-top:12px;font:400 .82rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--grafit)}
+.dk-lista{display:grid;gap:12px;margin-top:4px}
+.dk-lista li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;font-size:1.02rem}
+.dk-lista li svg{width:22px;height:22px;stroke:var(--wymiar);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+
+/* ---------- co dostajesz ---------- */
+
+.pakiet{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.pak{display:flex;flex-direction:column;overflow:hidden;padding:0}
+.pak .obraz{aspect-ratio:4/3;background:var(--biurko);border-bottom:1px solid var(--linia);display:grid;place-items:center;overflow:hidden;position:relative}
+.pak .obraz img{width:100%;height:100%;object-fit:cover}
+.pak .obraz.rys img{object-fit:contain;padding:8px;background:#fff}
+.pak .obraz .nr{position:absolute;left:10px;top:8px;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:#fff;background:rgba(21,21,26,.78);padding:3px 7px;border-radius:2px}
+.pak .tresc{padding:18px 18px 20px}
+.pak h3{font-size:1.08rem}
+.pak p{margin-top:8px;font-size:.92rem;color:var(--grafit)}
+/* makieta zestawienia: to prawdziwy format, jaki idzie do hurtowni */
+.zest{width:100%;height:100%;padding:12px 14px;font-family:var(--mono);font-size:.56rem;line-height:1.55;color:var(--atrament);background:#fff;overflow:hidden}
+.zest .h{color:var(--grafit);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--linia);margin-bottom:4px;padding-bottom:3px;display:grid;grid-template-columns:1.6fr .6fr .6fr .4fr}
+.zest .w{display:grid;grid-template-columns:1.6fr .6fr .6fr .4fr;border-bottom:1px dotted var(--linia)}
+.zest .w span:nth-child(n+2){text-align:right;font-variant-numeric:tabular-nums}
+.zest .w.ok{color:var(--wymiar)}
+/* makieta odpowiedzi do klienta */
+.sms{width:100%;height:100%;padding:14px;background:#fff;display:flex;flex-direction:column;gap:8px;justify-content:center}
+.sms .b{max-width:88%;padding:8px 11px;border-radius:12px;font-size:.7rem;line-height:1.4}
+.sms .b.in{background:var(--biurko);color:var(--atrament);align-self:flex-start;border-bottom-left-radius:3px}
+.sms .b.out{background:var(--wymiar);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.sms .b small{display:block;opacity:.7;font-family:var(--mono);font-size:.55rem;margin-top:3px}
+.uwaga{margin-top:22px;display:flex;gap:14px;align-items:flex-start;border:1px dashed var(--linia-2);border-radius:var(--r);padding:16px 18px;font-size:.95rem;color:var(--grafit)}
+.uwaga svg{width:22px;height:22px;flex:none;stroke:var(--wymiar);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.uwaga b{color:var(--atrament);font-weight:600}
+
+/* ---------- jak to działa ---------- */
+
+.kroki{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;border:1px solid var(--linia);border-radius:var(--r);background:var(--karta);overflow:hidden}
+.krok{padding:clamp(22px,3vw,30px);border-left:1px solid var(--linia);position:relative}
+.krok:first-child{border-left:0}
+.krok b{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--wymiar)}
+.krok h3{font-size:1.1rem;margin-top:12px}
+.krok p{margin-top:10px;font-size:.92rem;color:var(--grafit)}
+.krok .czas{margin-top:16px;display:inline-block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--atrament);background:var(--wymiar-tlo);padding:5px 9px;border-radius:2px}
+
+/* ---------- rachunek ---------- */
+
+.rachunek{background:var(--biurko)}
+.liczby{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.liczba{padding:clamp(22px,3vw,30px)}
+.liczba .big{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,4.6vw,3.4rem);letter-spacing:-.03em;line-height:1;color:var(--wymiar);font-variant-numeric:tabular-nums;font-variation-settings:"wdth" 88}
+.liczba .big small{font-size:.45em;font-weight:600;letter-spacing:0;color:var(--grafit);margin-left:4px}
+.liczba p{margin-top:12px;font-size:.95rem;color:var(--grafit)}
+.liczba p b{color:var(--atrament);font-weight:600}
+.rachunek .zalozenie{margin-top:18px;font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--grafit)}
+
+/* ---------- realizacje ---------- */
+
+.film{margin:40px 0 0;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:center;background:var(--karta);border:1px solid var(--linia);border-radius:var(--r);padding:14px}
+.film-ramka{position:relative;border-radius:calc(var(--r) - 2px);overflow:hidden;background:#000;aspect-ratio:8/5;max-width:100%}
+.film-ramka::before{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.08);border-radius:inherit;pointer-events:none;z-index:1}
+.film video{width:100%;height:100%;display:block;object-fit:cover}
+.film figcaption{padding:6px 10px 10px 2px;display:grid;gap:10px;align-content:center}
+.film figcaption b{font-family:var(--disp);font-size:1.25rem;font-weight:700;line-height:1.2;text-wrap:balance}
+.film figcaption span{color:var(--grafit);font-size:.95rem}
+.film-etyk{font:500 .62rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--wymiar)!important}
+.filtry{display:flex;gap:8px;flex-wrap:wrap;margin-top:34px}
+.filtry button{padding:9px 16px;border:1px solid var(--linia-2);border-radius:999px;font-weight:600;font-size:.9rem;color:var(--grafit);background:var(--karta);transition:.2s}
+.filtry button[aria-pressed="true"]{background:var(--atrament);color:var(--papier);border-color:var(--atrament)}
+.filtry button:hover:not([aria-pressed="true"]){border-color:var(--wymiar);color:var(--wymiar)}
+
+.gal{columns:3;column-gap:16px;margin-top:24px}
+.gal-item{position:relative;display:block;break-inside:avoid;margin:0 0 16px;background:var(--karta);border:1px solid var(--linia);border-radius:var(--r);overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.gal-item img{width:100%;height:auto;display:block;transition:transform .5s ease}
+.gal-item[data-grupa="rysunek"] img{background:#fff}
+.gal-item:hover,.gal-item:focus-visible{border-color:var(--wymiar);box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.gal-item:hover img{transform:scale(1.02)}
+.gal-item .cap{display:block;padding:10px 13px;font-size:.82rem;color:var(--grafit);border-top:1px solid var(--linia)}
+.gal-item .cap b{display:inline-block;font:500 .6rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--wymiar);margin-right:8px}
+.gal-item[hidden]{display:none}
+.gal-nota{margin-top:14px;font-size:.9rem;color:var(--grafit)}
+
+/* ---------- lightbox ---------- */
+
+.lb[hidden]{display:none}
+.lb{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;background:rgba(12,12,16,.92);backdrop-filter:blur(6px);padding:clamp(16px,4vw,40px)}
+.lb.open{display:flex}
+.lb figure{position:relative;max-width:min(1120px,94vw);display:flex;flex-direction:column;align-items:center;gap:12px}
+.lb img{max-width:100%;max-height:78vh;object-fit:contain;background:#fff;border-radius:var(--r)}
+.lb figcaption{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#D9D7D1;text-align:center}
+.lb-btn[hidden]{display:none}
+.lb-btn{position:absolute;width:46px;height:46px;border:1px solid rgba(255,255,255,.35);color:#fff;display:grid;place-items:center;font-size:1.5rem;line-height:1;background:rgba(12,12,16,.6);border-radius:var(--r);transition:.2s}
+.lb-btn:hover{background:var(--wymiar);border-color:var(--wymiar)}
+.lb-close{position:fixed;top:clamp(12px,3vw,28px);right:clamp(12px,3vw,28px)}
+.lb-prev{left:clamp(-58px,-4vw,-14px);top:50%;transform:translateY(-50%)}
+.lb-next{right:clamp(-58px,-4vw,-14px);top:50%;transform:translateY(-50%)}
+@media (max-width:720px){.lb-prev{left:0}.lb-next{right:0}}
+
+/* ---------- cennik ---------- */
+
+.cennik-wrap{margin-top:44px;overflow-x:auto;border:1px solid var(--linia);border-radius:var(--r);background:var(--karta)}
+table.cennik{width:100%;border-collapse:collapse;min-width:640px}
+.cennik th{text-align:left;font:500 .68rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--grafit);padding:14px 18px;border-bottom:1px solid var(--linia);background:var(--biurko)}
+.cennik td{padding:15px 18px;border-bottom:1px solid var(--linia);vertical-align:top}
+.cennik tr:last-child td{border-bottom:0}
+.cennik td.cena{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:500}
+.cennik td.uw{color:var(--grafit);font-size:.92rem}
+.cennik tr.wyroz td{background:var(--wymiar-tlo)}
+.cennik tr.wyroz td.cena{color:var(--wymiar)}
+.cennik tr.pilot td{background:color-mix(in srgb,var(--dobrze) 10%,transparent)}
+.cennik tr.pilot td.cena{color:var(--dobrze)}
+.cennik-nota{margin-top:16px;font-size:.9rem;color:var(--grafit)}
+
+/* ---------- kto za tym stoi ---------- */
+
+.kto{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:center}
+.kto .obraz{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;border:1px solid var(--linia)}
+.kto .obraz img{width:100%;height:100%;object-fit:cover}
+.kto p+p{margin-top:14px}
+.kto .narz{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.kto .narz li{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--linia-2);padding:6px 10px;border-radius:2px;color:var(--grafit)}
+
+/* ---------- pilotaż ---------- */
+
+.pilot{background:var(--atrament);color:var(--papier)}
+.pilot .etyk{color:var(--wymiar)}
+.pilot .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center}
+.pilot h2{font-size:clamp(1.8rem,3.6vw,2.7rem);margin-top:12px}
+.pilot h2 em{font-style:normal;color:var(--wymiar)}
+.pilot p{margin-top:16px;color:color-mix(in srgb,var(--papier) 72%,transparent);font-size:1.05rem}
+.pilot ol{display:grid;gap:14px;counter-reset:k}
+.pilot ol li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;padding:14px 16px;border:1px solid color-mix(in srgb,var(--papier) 18%,transparent);border-radius:var(--r)}
+.pilot ol li::before{counter-increment:k;content:counter(k,decimal-leading-zero);font-family:var(--mono);font-size:.8rem;color:var(--wymiar);padding-top:2px}
+.pilot ol li b{display:block;font-weight:600}
+.pilot ol li span{display:block;grid-column:2;font-size:.9rem;color:color-mix(in srgb,var(--papier) 68%,transparent);margin-top:2px}
+.pilot .btn-main{margin-top:26px}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .pilot{background:#0F0F14} }
+:root[data-theme="dark"] .pilot{background:#0F0F14}
+
+/* ---------- kontakt ---------- */
+
+.kontakt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.kk strong{display:block;font-family:var(--disp);font-size:1.35rem;font-weight:700;margin-top:12px;letter-spacing:-.01em}
+.kk p{margin-top:8px;font-size:.92rem;color:var(--grafit)}
+.kk a.line{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:var(--wymiar);font-weight:600}
+.kk a.line:hover{color:var(--wymiar-ciemny)}
+.kk .do-uzup{display:inline-block;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:1px dashed var(--linia-2);padding:4px 8px;border-radius:2px;color:var(--grafit);margin-top:10px}
+
+/* ---------- stopka ---------- */
+
+.stopka{border-top:1px solid var(--linia);background:var(--biurko);padding:clamp(40px,6vw,60px) 0 calc(28px + env(safe-area-inset-bottom))}
+.stopka .gora{display:flex;gap:28px;flex-wrap:wrap;justify-content:space-between;align-items:flex-start}
+.stopka nav{display:flex;gap:20px;flex-wrap:wrap;font-size:.9rem;font-weight:600;color:var(--grafit)}
+.stopka nav a:hover{color:var(--wymiar)}
+.stopka .dol{margin-top:28px;padding-top:20px;border-top:1px solid var(--linia);display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;font-size:.82rem;color:var(--grafit)}
+
+/* ---------- pasek na telefonie ---------- */
+
+.pasek{position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;gap:10px;padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));
+  background:color-mix(in srgb,var(--papier) 94%,transparent);backdrop-filter:blur(8px);border-top:1px solid var(--linia)}
+.pasek .btn{flex:1;padding:13px 10px;font-size:.92rem}
+
+/* ---------- pojawianie się ---------- */
+
+.js .rise{opacity:0;transform:translateY(16px);transition:opacity .65s ease,transform .65s ease}
+.js .rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rise{opacity:1;transform:none}}
+
+/* ---------- RWD ---------- */
+
+@media (max-width:1100px){
+  .nav{gap:18px}.nav a{font-size:.88rem}
+}
+@media (max-width:1000px){
+  .nag-cta{display:none}
+  .pakiet{grid-template-columns:repeat(2,1fr)}
+  .kroki{grid-template-columns:repeat(2,1fr)}
+  .krok:nth-child(3){border-left:0}
+  .krok:nth-child(n+3){border-top:1px solid var(--linia)}
+  .gal{columns:2}
+}
+@media (max-width:900px){
+  .nav{display:none}.burger{display:flex}
+  .hero .wrap{grid-template-columns:1fr}
+  .stos{width:100%;max-width:560px;margin:0 auto;justify-self:center}
+  .dk,.kto,.pilot .wrap{grid-template-columns:1fr}
+  .film{grid-template-columns:1fr}
+  .film figcaption{padding:4px 6px 8px}
+  .liczby{grid-template-columns:1fr}
+  .kontakt-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .pasek{display:flex}
+  body{padding-bottom:72px}
+  .pakiet{grid-template-columns:1fr}
+  .kroki{grid-template-columns:1fr}
+  .krok{border-left:0;border-top:1px solid var(--linia)}
+  .krok:first-child{border-top:0}
+  .gal{columns:2;column-gap:10px}
+  .gal-item{margin-bottom:10px}
+  .gal-item .cap{font-size:.72rem;padding:8px 10px}
+  .stos{min-height:0;aspect-ratio:.74}
+  .stos .s-render{width:100%;top:0}
+  .stos .s-rysunek{display:none}
+  .stos .s-oferta{width:60%;left:auto;right:0}
+  .stos .s-tag{bottom:auto;top:60%}
+  .wymiar span{white-space:normal}
+  .dk > *,.kto > *,.pilot .wrap > *{min-width:0}
+}
+@media (max-width:420px){ .gal{columns:1} }
+
+@media print{
+  .naglowek,.burger,.menu-mobile,.lb,.pasek{display:none!important}
+  body{background:#fff;color:#000}
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+
+<!-- ================= NAGŁÓWEK ================= -->
+<header class="naglowek" id="naglowek">
+  <div class="wrap">
+    <a class="marka" href="#gora" aria-label="szuwar700 — strona główna">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="8" fill="var(--karta)" stroke="var(--linia-2)"/><path d="M12 44h40M12 20v24M52 20v24" stroke="var(--wymiar)" stroke-width="3" fill="none"/><path d="M20 20h24v18H20z" fill="none" stroke="var(--atrament)" stroke-width="3"/></svg>
+      <span><b>szuwar<i>700</i></b><small>biuro wycen dla stolarni</small></span>
+    </a>
+
+    <nav class="nav" aria-label="Menu główne">
+      <a href="#dla-kogo">Dla kogo</a>
+      <a href="#pakiet">Co dostajesz</a>
+      <a href="#jak">Jak to działa</a>
+      <a href="#realizacje">Realizacje</a>
+      <a href="#cennik">Cennik</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <a class="btn btn-main nag-cta" href="#pilotaz">3 wyceny bezpłatnie</a>
+
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Otwórz menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="menu-mobile" id="menu-mobile" aria-label="Menu mobilne">
+  <a href="#dla-kogo">Dla kogo</a>
+  <a href="#pakiet">Co dostajesz</a>
+  <a href="#jak">Jak to działa</a>
+  <a href="#realizacje">Realizacje</a>
+  <a href="#cennik">Cennik</a>
+  <a href="#kontakt">Kontakt</a>
+  <a class="btn btn-main" href="#pilotaz">3 wyceny bezpłatnie</a>
+</nav>
+
+<main id="tresc">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="gora">
+  <div class="wrap">
+    <div>
+      <span class="etyk">Biuro wycen i ofert dla stolarni</span>
+      <h1>Wycena, rysunek i oferta PDF pod Twoją marką — <em>w dwa dni robocze.</em></h1>
+      <p class="lead">Przesyłasz zapytanie klienta: zdjęcie, szkic albo wymiary. Dostajesz gotowy pakiet
+        policzony z <strong>Twojego</strong> cennika i według <strong>Twoich</strong> zasad konstrukcji.
+        Ty decydujesz, co trafia do klienta.</p>
+      <div class="hero-cta">
+        <a class="btn btn-main" href="#pilotaz">Sprawdź na 3 zapytaniach — bezpłatnie</a>
+        <a class="btn btn-ghost" href="#pakiet">Zobacz, co dostajesz</a>
+      </div>
+      <ul class="hero-fakty">
+        <li><b>2 dni</b> robocze · ekspres 1</li>
+        <li>od <b>120 zł</b> za wycenę</li>
+        <li><b>NDA</b> i powierzenie danych</li>
+      </ul>
+    </div>
+
+    <div class="stos rise" aria-label="Pakiet z jednego zapytania: render, rysunek z wymiarami i oferta PDF">
+      <figure class="s-render">
+        <img src="rendery/render-01.jpg" alt="Render przedpokoju: zabudowa w graficie i dębie z siedziskiem" width="1800" height="1200" fetchpriority="high">
+        <span class="dim" aria-hidden="true"><span>2 400</span></span>
+      </figure>
+      <figure class="s-rysunek" aria-hidden="true">
+        <img src="rendery/rysunek-01.jpg" alt="" width="1272" height="953">
+      </figure>
+      <div class="s-oferta" aria-hidden="true">
+        <div class="so-nag"><span>Oferta nr 2026/10/041</span><span class="so-logo">TWOJE LOGO</span></div>
+        <h4>Zabudowa przedpokoju — Rukławki</h4>
+        <table>
+          <tr><td>Szafa 2-drzwiowa z lustrem, 2 400 mm</td><td>6 840 zł</td></tr>
+          <tr><td>Wnęka: panele, siedzisko, pawlacz</td><td>3 120 zł</td></tr>
+          <tr><td>Okucia, montaż, transport</td><td>1 460 zł</td></tr>
+          <tr class="suma"><td>Razem</td><td>11 420 zł</td></tr>
+        </table>
+        <p class="so-stop">Termin 5 tygodni od zaliczki 30% · ważność 14 dni</p>
+      </div>
+      <span class="s-tag">z jednego zapytania</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DLA KOGO ================= -->
+<section class="dla-kogo" id="dla-kogo">
+  <div class="wrap">
+    <div class="dk">
+      <div class="rise">
+        <span class="etyk">Dla kogo</span>
+        <div class="wymiar lewa"><span>Stolarnie 1–5 osób · meble na wymiar · kuchnie · zabudowy</span></div>
+        <p class="cytat">„Klient pyta w poniedziałek. Wycenę robię w czwartek wieczorem, bo w dzień jestem na montażu.
+          W piątek odpisuje, że już zamówił gdzie indziej."
+          <small>Tak wygląda tydzień w większości małych stolarni</small></p>
+      </div>
+      <ul class="dk-lista rise">
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span><b>Wyceniasz po godzinach.</b> Kuchnia to 30–40 minut skupienia, którego po dniu w warsztacie już nie ma.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M4 19h16M6 15l4-5 3 3 5-7"/></svg>
+          <span><b>Klient czeka dwa, trzy dni.</b> I w tym czasie pyta konkurencję. Kto odpowie pierwszy, ten zwykle robi.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>
+          <span><b>Błąd w zamówieniu kosztuje.</b> Brak dekoru, zły wymiar, zapomniane okucie — hurtownia odsyła, a termin ucieka.</span></li>
+        <li><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="1.5"/><path d="M8 10h8M8 14h5"/></svg>
+          <span><b>Oferta na kartce nie buduje zaufania.</b> Rysunek z wymiarami i PDF z logo — tak. I to wygrywa z „tanim" sąsiadem.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CO DOSTAJESZ ================= -->
+<section id="pakiet">
+  <div class="wrap">
+    <div class="sek-naglowek rise">
+      <span class="etyk">Co dostajesz</span>
+      <div class="wymiar lewa"><span>Jeden pakiet · cztery rzeczy</span></div>
+      <h2>Z jednego zapytania — komplet do klienta i do produkcji</h2>
+      <p>Nie szkic ani „orientacyjnie". Wszystko policzone na szafkach, z Twoich grubości, szczelin i okuć.</p>
+    </div>
+
+    <div class="pakiet">
+      <article class="karta pak rise">
+        <div class="obraz rys"><span class="nr">01</span>
+          <img src="rendery/rysunek-02.jpg" alt="Rysunek z wymiarami: widok z przodu meblościanki" width="1800" height="1079" loading="lazy" decoding="async"></div>
+        <div class="tresc"><h3>Rzut i kład z wymiarami</h3>
+          <p>Każdej szafki. Do pokazania klientowi przy stole i do produkcji przy pile.</p></div>
+      </article>
+
+      <article class="karta pak rise">
+        <div class="obraz"><span class="nr">02</span>
+          <div class="zest" aria-label="Przykład zestawienia formatek">
+            <div class="h"><span>Element</span><span>Dł.</span><span>Sz.</span><span>Szt.</span></div>
+            <div class="w"><span>D60 bok</span><span>720</span><span>520</span><span>2</span></div>
+            <div class="w"><span>D60 wieniec</span><span>564</span><span>520</span><span>2</span></div>
+            <div class="w"><span>D60 półka</span><span>562</span><span>500</span><span>1</span></div>
+            <div class="w"><span>D60 plecy HDF</span><span>715</span><span>595</span><span>1</span></div>
+            <div class="w"><span>D60 front</span><span>716</span><span>596</span><span>1</span></div>
+            <div class="w"><span>G60 bok</span><span>720</span><span>330</span><span>2</span></div>
+            <div class="w ok"><span>zawias 110° + prowadnik</span><span></span><span></span><span>2</span></div>
+            <div class="w ok"><span>uchwyt 160</span><span></span><span></span><span>1</span></div>
+          </div></div>
+        <div class="tresc"><h3>Zestawienie formatek i okuć</h3>
+          <p>Według zasad Twojego warsztatu. Po zleceniu — z tego samego pliku zamówienie do hurtowni.</p></div>
+      </article>
+
+      <article class="karta pak rise">
+        <div class="obraz"><span class="nr">03</span>
+          <img src="rendery/render-02-mini.jpg" alt="Render kuchni: zabudowa oliwkowa z wyspą" width="900" height="636" loading="lazy" decoding="async"></div>
+        <div class="tresc"><h3>Oferta PDF z Twoim logo</h3>
+          <p>Cena z Twojego cennika, termin, warunki zaliczki. Na życzenie render — klient widzi, za co płaci.</p></div>
+      </article>
+
+      <article class="karta pak rise">
+        <div class="obraz"><span class="nr">04</span>
+          <div class="sms" aria-label="Przykład szkicu odpowiedzi do klienta">
+            <div class="b in">Dzień dobry, czy da się zrobić taką zabudowę jak na zdjęciu? Wnęka 240 cm.<small>klient · pon 19:40</small></div>
+            <div class="b out">Dzień dobry! Da się. W załączniku rysunek, wizualizacja i oferta: 11 420 zł, termin 5 tygodni. Mogę przyjechać z pomiarem w czwartek po 16.<small>szkic do poprawki · wt 09:10</small></div>
+          </div></div>
+        <div class="tresc"><h3>Szkic odpowiedzi do klienta</h3>
+          <p>Mail albo SMS — poprawiasz jedno zdanie i wysyłasz. Jednym kliknięciem.</p></div>
+      </article>
+    </div>
+
+    <p class="uwaga rise"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      <span><b>Nic nie idzie do Twojego klienta bez Twojej zgody.</b> Cennik, marże i dane klientów zostają u Ciebie.
+      Podpisujemy umowę o poufności i powierzeniu danych.</span></p>
+  </div>
+</section>
+
+<!-- ================= JAK TO DZIAŁA ================= -->
+<section id="jak">
+  <div class="wrap">
+    <div class="sek-naglowek rise">
+      <span class="etyk">Jak to działa</span>
+      <div class="wymiar lewa"><span>Cztery kroki · raz ustawiamy, potem leci</span></div>
+      <h2>Ty zbierasz zapytania. My robimy z nich oferty.</h2>
+    </div>
+
+    <ol class="kroki rise">
+      <li class="krok"><b>01</b><h3>Wysyłasz zapytanie</h3>
+        <p>Zdjęcie, szkic albo wymiary, kilka słów o frontach i wyposażeniu. Mail albo WhatsApp — jak Ci wygodniej.</p>
+        <span class="czas">2 minuty Twojego czasu</span></li>
+      <li class="krok"><b>02</b><h3>Biuro buduje model</h3>
+        <p>W systemie, do którego raz na starcie wpisujemy Twoje zasady konstrukcji i cennik. Potem każda wycena liczy się tak samo.</p>
+        <span class="czas">start: 500 zł, w abonamencie 0</span></li>
+      <li class="krok"><b>03</b><h3>Dostajesz pakiet</h3>
+        <p>Rysunek, zestawienie, oferta PDF, szkic odpowiedzi. Standardowo w dwa dni robocze, ekspres w jeden.</p>
+        <span class="czas">2 dni · ekspres 1 dzień</span></li>
+      <li class="krok"><b>04</b><h3>Poprawiasz i wysyłasz</h3>
+        <p>Zmieniasz cenę albo szczegół, klikasz „wyślij". Po zleceniu z tego samego zestawienia robimy zamówienie do hurtowni.</p>
+        <span class="czas">zamówienie: 60 zł</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= RACHUNEK ================= -->
+<section class="rachunek">
+  <div class="wrap">
+    <div class="sek-naglowek rise">
+      <span class="etyk">Rachunek</span>
+      <div class="wymiar lewa"><span>Liczby, nie obietnice</span></div>
+      <h2>Ile to warte w Twoim warsztacie</h2>
+    </div>
+    <div class="liczby">
+      <div class="karta liczba rise"><div class="big">16–22<small>godz./mies.</small></div>
+        <p><b>Odzyskane wieczory.</b> Przy 8 zapytaniach tygodniowo po 30–40 minut na wycenę.</p></div>
+      <div class="karta liczba rise"><div class="big">1<small>dzień zamiast 3</small></div>
+        <p><b>Czas odpowiedzi.</b> Klient dostaje ofertę, zanim zdąży obdzwonić konkurencję.</p></div>
+      <div class="karta liczba rise"><div class="big">½<small>roku abonamentu</small></div>
+        <p><b>Tyle opłaca jedna kuchnia za 14 000 zł</b>, wygrana dzięki szybkiej odpowiedzi.</p></div>
+    </div>
+    <p class="zalozenie rise">Założenia do policzenia na Twoich liczbach podczas rozmowy startowej — nie na średniej z rynku.</p>
+  </div>
+</section>
+
+<!-- ================= REALIZACJE ================= -->
+<section id="realizacje">
+  <div class="wrap">
+    <div class="sek-naglowek rise">
+      <span class="etyk">Realizacje</span>
+      <div class="wymiar lewa"><span>Rendery jak zdjęcie · rysunki do produkcji</span></div>
+      <h2>Tak wyglądają pakiety, które wyszły z biura</h2>
+      <p>Rendery policzone z tych samych modeli, z których idą zestawienia. To, co widzi klient, i to, co tnie piła, to jeden plik.</p>
+    </div>
+
+    <figure class="film rise">
+      <div class="film-ramka">
+        <video id="film" playsinline muted loop controls preload="metadata" poster="lot-jonkowo-poster.jpg" width="960" height="600" aria-label="Lot kamery po projekcie kuchni w Jonkowie">
+          <source src="lot-jonkowo.webm" type="video/webm">
+          <source src="lot-jonkowo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <figcaption>
+        <span class="film-etyk">Lot kamery · 30 s · bez dźwięku</span>
+        <b>Kuchnia Jonkowo — przelot po projekcie</b>
+        <span>Ten sam model, z którego poszło zestawienie formatek. Krótki film do oferty, gdy klient waha się między wariantami albo chce pokazać projekt rodzinie.</span>
+      </figcaption>
+    </figure>
+
+    <div class="filtry rise" role="group" aria-label="Filtr realizacji">
+      <button type="button" data-filtr="wszystko" aria-pressed="true">Wszystko</button>
+      <button type="button" data-filtr="render" aria-pressed="false">Rendery</button>
+      <button type="button" data-filtr="rysunek" aria-pressed="false">Rysunki</button>
+    </div>
+
+    <div class="gal" id="galeria">
+<a class="gal-item" href="rendery/render-01.jpg" data-grupa="render" data-caption="Przedpokój Rukławki — zabudowa w graficie i dębie"><img src="rendery/render-01-mini.jpg" alt="Przedpokój Rukławki — zabudowa w graficie i dębie — wizualizacja przygotowany przez biuro szuwar700" width="900" height="600" loading="lazy" decoding="async"><span class="cap"><b>Render</b>Przedpokój Rukławki — zabudowa w graficie i dębie</span></a>
+<a class="gal-item" href="rendery/render-02.jpg" data-grupa="render" data-caption="Kuchnia Jonkowo — widok ogólny"><img src="rendery/render-02-mini.jpg" alt="Kuchnia Jonkowo — widok ogólny — wizualizacja przygotowany przez biuro szuwar700" width="900" height="563" loading="lazy" decoding="async"><span class="cap"><b>Render</b>Kuchnia Jonkowo — widok ogólny</span></a>
+<a class="gal-item" href="rendery/rysunek-01.jpg" data-grupa="rysunek" data-caption="Rukławki — rzut z przodu"><img src="rendery/rysunek-01-mini.jpg" alt="Rukławki — rzut z przodu — rysunek techniczny przygotowany przez biuro szuwar700" width="900" height="674" loading="lazy" decoding="async"><span class="cap"><b>Rysunek</b>Rukławki — rzut z przodu</span></a>
+<a class="gal-item" href="rendery/render-03.jpg" data-grupa="render" data-caption="Meblościanka z łóżkiem w szafie — zamknięta"><img src="rendery/render-03-mini.jpg" alt="Meblościanka z łóżkiem w szafie — zamknięta — wizualizacja przygotowany przez biuro szuwar700" width="900" height="600" loading="lazy" decoding="async"><span class="cap"><b>Render</b>Meblościanka z łóżkiem w szafie — zamknięta</span></a>
+<a class="gal-item" href="rendery/render-04.jpg" data-grupa="render" data-caption="Rukławki — wnęka z siedziskiem i wieszakiem"><img src="rendery/render-04-mini.jpg" alt="Rukławki — wnęka z siedziskiem i wieszakiem — wizualizacja przygotowany przez biuro szuwar700" width="600" height="900" loading="lazy" decoding="async"><span class="cap"><b>Render</b>Rukławki — wnęka z siedziskiem i wieszakiem</span></a>
+<a class="gal-item" href="rendery/rysunek-02.jpg" data-grupa="rysunek" data-caption="Meblościanka — widok z przodu z wymiarami"><img src="rendery/rysunek-02-mini.jpg" alt="Meblościanka — widok z przodu z wymiarami — rysunek techniczny przygotowany przez biuro szuwar700" width="900" height="539" loading="lazy" decoding="async"><span class="cap"><b>Rysunek</b>Meblościanka — widok z przodu z wymiarami</span></a>
+<a class="gal-item" href="rendery/render-05.jpg" data-grupa="render" data-caption="Kuchnia Jonkowo — zza wyspy"><img src="rendery/render-05-mini.jpg" alt="Kuchnia Jonkowo — zza wyspy — wizualizacja przygotowany przez biuro szuwar700" width="900" height="561" loading="lazy" decoding="async"><span class="cap"><b>Render</b>Kuchnia Jonkowo — zza wyspy</span></a>
+<a class="gal-item" href="rendery/render-06.jpg" data-grupa="render" data-caption="Kuchnia Jonkowo — cargo 400 otwarte"><img src="rendery/render-06-mini.jpg" alt="Kuchnia Jonkowo — cargo 400 otwarte — wizualizacja przygotowany przez biuro szuwar700" width="900" height="562" loading="lazy" decoding="async"><span class="cap"><b>Render</b>Kuchnia Jonkowo — cargo 400 otwarte</span></a>
+<a class="gal-item" href="rendery/rysunek-03.jpg" data-grupa="rysunek" data-caption="Rukławki — perspektywa z góry"><img src="rendery/rysunek-03-mini.jpg" alt="Rukławki — perspektywa z góry — rysunek techniczny przygotowany przez biuro szuwar700" width="900" height="850" loading="lazy" decoding="async"><span class="cap"><b>Rysunek</b>Rukławki — perspektywa z góry</span></a>
+<a class="gal-item" href="rendery/render-07.jpg" data-grupa="render" data-caption="Meblościanka z łóżkiem w szafie — otwarta"><img src="rendery/render-07-mini.jpg" alt="Meblościanka z łóżkiem w szafie — otwarta — wizualizacja przygotowany przez biuro szuwar700" width="900" height="600" loading="lazy" decoding="async"><span class="cap"><b>Render</b>Meblościanka z łóżkiem w szafie — otwarta</span></a>
+<a class="gal-item" href="rendery/render-08.jpg" data-grupa="render" data-caption="Kuchnia Jonkowo — ściana z oknami"><img src="rendery/render-08-mini.jpg" alt="Kuchnia Jonkowo — ściana z oknami — wizualizacja przygotowany przez biuro szuwar700" width="900" height="561" loading="lazy" decoding="async"><span class="cap"><b>Render</b>Kuchnia Jonkowo — ściana z oknami</span></a>
+<a class="gal-item" href="rendery/rysunek-04.jpg" data-grupa="rysunek" data-caption="Meblościanka — przekrój przez łóżko"><img src="rendery/rysunek-04-mini.jpg" alt="Meblościanka — przekrój przez łóżko — rysunek techniczny przygotowany przez biuro szuwar700" width="900" height="770" loading="lazy" decoding="async"><span class="cap"><b>Rysunek</b>Meblościanka — przekrój przez łóżko</span></a>
+<a class="gal-item" href="rendery/render-09.jpg" data-grupa="render" data-caption="Kuchnia Jonkowo — wyspa"><img src="rendery/render-09-mini.jpg" alt="Kuchnia Jonkowo — wyspa — wizualizacja przygotowany przez biuro szuwar700" width="900" height="562" loading="lazy" decoding="async"><span class="cap"><b>Render</b>Kuchnia Jonkowo — wyspa</span></a>
+<a class="gal-item" href="rendery/render-10.jpg" data-grupa="render" data-caption="Kuchnia Jonkowo — bok zabudowy od przejścia"><img src="rendery/render-10-mini.jpg" alt="Kuchnia Jonkowo — bok zabudowy od przejścia — wizualizacja przygotowany przez biuro szuwar700" width="900" height="563" loading="lazy" decoding="async"><span class="cap"><b>Render</b>Kuchnia Jonkowo — bok zabudowy od przejścia</span></a>
+<a class="gal-item" href="rendery/rysunek-05.jpg" data-grupa="rysunek" data-caption="Rukławki — rzut z góry"><img src="rendery/rysunek-05-mini.jpg" alt="Rukławki — rzut z góry — rysunek techniczny przygotowany przez biuro szuwar700" width="900" height="492" loading="lazy" decoding="async"><span class="cap"><b>Rysunek</b>Rukławki — rzut z góry</span></a>
+    </div>
+    <p class="gal-nota">Kliknij, żeby powiększyć. Strzałki i klawiatura przewijają całość.</p>
+  </div>
+</section>
+
+<!-- ================= CENNIK ================= -->
+<section id="cennik">
+  <div class="wrap">
+    <div class="sek-naglowek rise">
+      <span class="etyk">Cennik</span>
+      <div class="wymiar lewa"><span>Ceny startowe · do potwierdzenia w pilotażu</span></div>
+      <h2>Prosty cennik, bez niespodzianek</h2>
+      <p>Ceny końcowe. Firma zwolniona z VAT — kwota na ofercie to kwota do zapłaty.</p>
+    </div>
+
+    <div class="cennik-wrap rise">
+      <table class="cennik">
+        <thead><tr><th>Usługa</th><th>Cena</th><th>Uwagi</th></tr></thead>
+        <tbody>
+          <tr><td>Start: wpisanie zasad warsztatu i cennika</td><td class="cena">500 zł</td><td class="uw">jednorazowo · w abonamencie 0 zł</td></tr>
+          <tr><td>Wycena pojedynczego mebla albo zestawu do 6 szafek</td><td class="cena">120 zł</td><td class="uw">rysunek + zestawienie + oferta PDF</td></tr>
+          <tr><td>Wycena kuchni albo zabudowy</td><td class="cena">180–250 zł</td><td class="uw">zależnie od liczby szafek</td></tr>
+          <tr class="wyroz"><td>Abonament: 10 wycen miesięcznie</td><td class="cena">1 200 zł / mies.</td><td class="uw">kolejne po 100 zł · ekspres w cenie</td></tr>
+          <tr><td>Zamówienie materiałów z wyceny (plik dla hurtowni)</td><td class="cena">60 zł</td><td class="uw">albo w abonamencie</td></tr>
+          <tr class="pilot"><td>Pilotaż</td><td class="cena">3 wyceny bezpłatnie</td><td class="uw">za referencję i wspólny pomiar czasu</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cennik-nota rise">Render do oferty wyceniany osobno, zależnie od liczby ujęć — pytaj przy zapytaniu.</p>
+  </div>
+</section>
+
+<!-- ================= KTO ZA TYM STOI ================= -->
+<section id="kto">
+  <div class="wrap">
+    <div class="kto">
+      <div class="obraz rise"><img src="rendery/render-06-mini.jpg" alt="Render kuchni z otwartym cargo — detal konstrukcji" width="900" height="636" loading="lazy" decoding="async"></div>
+      <div class="rise">
+        <span class="etyk">Kto za tym stoi</span>
+        <div class="wymiar lewa"><span>Stolarz, nie pośrednik</span></div>
+        <h2>Znam Twoją pracę od środka</h2>
+        <p style="margin-top:18px">Dwadzieścia lat w meblach na wymiar. Zbudowałem własny system projektowania i wycen —
+          PRO100, FreeCAD, własne zasady konstrukcji i cennik — i prowadzę dziś biuro zdalnie.</p>
+        <p>Wiem, gdzie w wycenie gubi się marża, co hurtownia odeśle z błędem i dlaczego klient wybiera tego, kto
+          odpisze pierwszy z rysunkiem, a nie tego, kto da najniższą cenę.</p>
+        <ul class="narz" aria-label="Narzędzia">
+          <li>PRO100</li><li>FreeCAD</li><li>Blender</li><li>eRozkroje</li><li>własny rozpis formatek</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PILOTAŻ ================= -->
+<section class="pilot" id="pilotaz">
+  <div class="wrap">
+    <div class="rise">
+      <span class="etyk">Pilotaż</span>
+      <h2>Sprawdź to na <em>trzech swoich zapytaniach.</em> Bezpłatnie.</h2>
+      <p>Nie sprzedaję Ci abonamentu w ciemno. Dajesz trzy prawdziwe zapytania od klientów, ja oddaję trzy pakiety.
+        Mierzymy razem czas i patrzymy, czy liczby się zgadzają. W zamian proszę o szczerą opinię i referencję.</p>
+      <a class="btn btn-main" href="#kontakt">Zgłoś stolarnię do pilotażu</a>
+    </div>
+    <ol class="rise">
+      <li><b>Rozmowa 20 minut</b><span>Najlepiej w warsztacie. Twoje liczby: zapytań tygodniowo, minut na wycenę, wygranych z dziesięciu.</span></li>
+      <li><b>Wpisujemy Twoje zasady</b><span>Grubości, szczeliny, zawiasy, cennik — raz. Na pilotaż bez opłaty startowej.</span></li>
+      <li><b>Trzy zapytania, trzy pakiety</b><span>Każdy w dwa dni robocze. Porównujesz z tym, co zrobiłbyś sam.</span></li>
+      <li><b>Decyzja</b><span>Zostajesz na abonamencie, bierzesz pojedyncze wyceny albo dziękujesz. Bez haczyków.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= KONTAKT ================= -->
+<section id="kontakt">
+  <div class="wrap">
+    <div class="sek-naglowek rise">
+      <span class="etyk">Kontakt</span>
+      <div class="wymiar lewa"><span>Mail albo WhatsApp — jak Ci wygodniej</span></div>
+      <h2>Wyślij pierwsze zapytanie</h2>
+      <p>Zdjęcie, szkic albo wymiary i kilka słów. Resztę ustalimy w 20-minutowej rozmowie.</p>
+    </div>
+
+    <div class="kontakt-grid">
+      <div class="karta kk rise">
+        <span class="etyk">Telefon · WhatsApp</span>
+        <strong><a href="tel:+48510864253">510 864 253</a></strong>
+        <p>Krzysztof. Najszybciej na WhatsAppie — zdjęcie i wymiary wystarczą na start.</p>
+        <a class="line" href="https://wa.me/48510864253" target="_blank" rel="noopener">Napisz na WhatsApp →</a>
+      </div>
+      <div class="karta kk rise">
+        <span class="etyk">E-mail</span>
+        <strong>biuro@szuwar700.pl</strong>
+        <p>Na zapytania z załącznikami: zdjęcia, PDF-y, pliki z PRO100.</p>
+        <span class="do-uzup">adres do potwierdzenia</span>
+      </div>
+      <div class="karta kk rise">
+        <span class="etyk">Dane firmy</span>
+        <strong>szuwar700</strong>
+        <p>Nazwa robocza. NIP, adres i forma prawna — po rejestracji działalności.</p>
+        <span class="do-uzup">do uzupełnienia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= STOPKA ================= -->
+<footer class="stopka">
+  <div class="wrap">
+    <div class="gora">
+      <a class="marka" href="#gora" aria-label="szuwar700">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="8" fill="var(--karta)" stroke="var(--linia-2)"/><path d="M12 44h40M12 20v24M52 20v24" stroke="var(--wymiar)" stroke-width="3" fill="none"/><path d="M20 20h24v18H20z" fill="none" stroke="var(--atrament)" stroke-width="3"/></svg>
+        <span><b>szuwar<i>700</i></b><small>biuro wycen dla stolarni</small></span>
+      </a>
+      <nav aria-label="Menu w stopce">
+        <a href="#dla-kogo">Dla kogo</a><a href="#pakiet">Co dostajesz</a><a href="#jak">Jak to działa</a>
+        <a href="#realizacje">Realizacje</a><a href="#cennik">Cennik</a><a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+    <div class="dol">
+      <span>© <span id="rok">2026</span> szuwar700 · wyceny i oferty dla stolarni</span>
+      <span>Rendery i rysunki z realizacji biura · Warmia</span>
+    </div>
+  </div>
+</footer>
+
+<div class="pasek">
+  <a class="btn btn-main" href="#pilotaz">3 wyceny bezpłatnie</a>
+  <a class="btn btn-ghost" href="https://wa.me/48510864253" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Powiększony obraz" hidden>
+  <figure>
+    <button class="lb-btn lb-close" id="lb-close" type="button" aria-label="Zamknij">×</button>
+    <button class="lb-btn lb-prev" id="lb-prev" type="button" aria-label="Poprzedni">‹</button>
+    <button class="lb-btn lb-next" id="lb-next" type="button" aria-label="Następny">›</button>
+    <img id="lb-img" src="" alt="">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $  = function(s,c){ return (c||document).querySelector(s); };
+  var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+
+  $("#rok").textContent = new Date().getFullYear();
+
+  var nag = $("#naglowek"), tick = false;
+  function naScroll(){ nag.classList.toggle("stuck", window.scrollY > 10); tick = false; }
+  window.addEventListener("scroll", function(){ if(!tick){ tick = true; requestAnimationFrame(naScroll); } }, {passive:true});
+  naScroll();
+
+  var burger = $("#burger"), menu = $("#menu-mobile");
+  function ustawMenu(o){
+    burger.setAttribute("aria-expanded", o ? "true" : "false");
+    burger.setAttribute("aria-label", o ? "Zamknij menu" : "Otwórz menu");
+    menu.classList.toggle("open", o); document.body.style.overflow = o ? "hidden" : "";
+  }
+  burger.addEventListener("click", function(){ ustawMenu(burger.getAttribute("aria-expanded") !== "true"); });
+  $$("#menu-mobile a").forEach(function(a){ a.addEventListener("click", function(){ ustawMenu(false); }); });
+
+  /* pojawianie się — bez JS wszystko jest widoczne od razu */
+  var rise = $$(".rise");
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches){
+    rise.forEach(function(e){ e.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }); },
+      {rootMargin:"0px 0px -6% 0px", threshold:.06});
+    rise.forEach(function(e,i){ e.style.transitionDelay = (i % 4) * 60 + "ms"; io.observe(e); });
+  }
+
+  /* film: gra tylko gdy widoczny, bez dźwięku */
+  var film = document.getElementById("film");
+  if (film && "IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches &&
+      !(navigator.connection && navigator.connection.saveData)){
+    var fio = new IntersectionObserver(function(es){ es.forEach(function(e){
+      if (e.isIntersecting){ var p = film.play(); if (p && p.catch) p.catch(function(){}); }
+      else film.pause();
+    }); }, {threshold:.45});
+    fio.observe(film);
+  }
+
+  /* filtr realizacji */
+  $$(".filtry button").forEach(function(b){
+    b.addEventListener("click", function(){
+      $$(".filtry button").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      var f = b.dataset.filtr;
+      $$("#galeria .gal-item").forEach(function(it){ it.hidden = !(f === "wszystko" || it.dataset.grupa === f); });
+    });
+  });
+
+  /* powiększenie */
+  var lb = $("#lb"), lbImg = $("#lb-img"), lbCap = $("#lb-cap"), lista = [], idx = 0, wracam = null;
+  function zbierz(){ lista = $$("#galeria .gal-item[href]").filter(function(a){ return !a.hidden; }); return lista.length; }
+  function pokaz(i){
+    if(!lista.length) return; idx = (i + lista.length) % lista.length;
+    var a = lista[idx], im = a.querySelector("img");
+    lbImg.src = a.getAttribute("href"); lbImg.alt = im ? im.alt : "";
+    lbCap.textContent = (a.dataset.caption || "") + "  ·  " + (idx+1) + " / " + lista.length;
+    $("#lb-prev").hidden = $("#lb-next").hidden = lista.length < 2;
+  }
+  function otworz(i, z){ wracam = z || null; lb.hidden = false; lb.classList.add("open"); document.body.style.overflow = "hidden"; pokaz(i); $("#lb-close").focus(); }
+  function zamknij(){ lb.classList.remove("open"); lb.hidden = true; lbImg.src = ""; document.body.style.overflow = ""; if(wracam) wracam.focus(); }
+  document.addEventListener("click", function(e){
+    var a = e.target.closest ? e.target.closest("#galeria .gal-item[href]") : null; if(!a) return;
+    e.preventDefault(); if(zbierz()) otworz(lista.indexOf(a), a);
+  });
+  $("#lb-close").addEventListener("click", zamknij);
+  $("#lb-prev").addEventListener("click", function(){ pokaz(idx-1); });
+  $("#lb-next").addEventListener("click", function(){ pokaz(idx+1); });
+  lb.addEventListener("click", function(e){ if(e.target === lb) zamknij(); });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){ if(lb.classList.contains("open")) zamknij(); else if(menu.classList.contains("open")){ ustawMenu(false); burger.focus(); } return; }
+    if(!lb.classList.contains("open")) return;
+    if(e.key === "ArrowLeft") pokaz(idx-1); if(e.key === "ArrowRight") pokaz(idx+1);
+  });
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "szuwar700 — biuro wycen i ofert dla stolarni",
+  "description": "Zdalne biuro wycen dla małych stolarni: rysunek z wymiarami, zestawienie formatek i okuć, oferta PDF pod marką warsztatu, w dwa dni robocze.",
+  "telephone": "+48510864253",
+  "areaServed": {"@type": "Country", "name": "Polska"},
+  "audience": {"@type": "BusinessAudience", "name": "Stolarnie i firmy meblowe 1–5 osób"},
+  "offers": [
+    {"@type": "Offer", "name": "Wycena pojedynczego mebla albo zestawu do 6 szafek", "price": "120", "priceCurrency": "PLN"},
+    {"@type": "Offer", "name": "Wycena kuchni albo zabudowy", "price": "180-250", "priceCurrency": "PLN"},
+    {"@type": "Offer", "name": "Abonament 10 wycen miesięcznie", "price": "1200", "priceCurrency": "PLN"}
+  ]
+}
+</script>
+</body>
+</html>
