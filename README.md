@@ -19,9 +19,8 @@ rendery/          15 renderów i rysunków z realizacji
   manifest.json        lista plików z opisami
 ```
 
-## Do uzupełnienia przed publikacją
+## Do uzupełnienia
 
-- adres e-mail w sekcji „Kontakt” (`biuro@szuwar700.pl` to placeholder),
-- nazwa firmy / NIP w stopce i w danych JSON-LD,
-- adres `og:url` i `canonical` po wykupieniu domeny,
+- e-mail i dane firmy (NIP, adres) — gdy będą; teraz kontakt tylko przez WhatsApp/telefon,
+- `og:url`, `canonical`, `robots.txt` i `sitemap.xml` po wykupieniu własnej domeny,
 - ewentualnie docelowa nazwa zamiast „szuwar700”.
