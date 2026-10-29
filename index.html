@@ -6,8 +6,7 @@
 <title>Biuro wycen i ofert dla stolarni — wycena mebli, rysunek, oferta PDF | szuwar700</title>
 <meta name="description" content="Zdalne biuro wycen dla małych stolarni: wycena mebli na wymiar, rysunek techniczny, zestawienie formatek i oferta PDF pod Twoją marką w 2 dni robocze. Pierwsze 3 wyceny bezpłatnie.">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#16161B" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F7F5F0">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pl_PL">
@@ -23,7 +22,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <script>document.documentElement.className += " js";</script>
 
@@ -49,8 +48,8 @@
 
   --dobrze:#2F6B3F;
 
-  --disp:"Manrope",ui-sans-serif,system-ui,sans-serif;
-  --sans:"Nunito Sans",ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;
+  --disp:"Lora",Georgia,"Times New Roman",serif;
+  --sans:"Lato",ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;
   --mono:var(--sans);            /* etykiety: ten sam krój co tekst, dla czytelności */
   --makieta:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; /* tylko makiety dokumentów */
 
@@ -59,18 +58,8 @@
   --gap:clamp(60px,9vw,112px);
   --r:4px;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --papier:#16161B; --biurko:#1E1E25; --karta:#1C1C22;
-    --atrament:#EDEBE6; --grafit:#B6B5BE; --linia:#2E2E37; --linia-2:#3B3B46;
-    --wymiar:#7FA2FF; --wymiar-ciemny:#A9C0FF; --wymiar-tlo:#1F2740; --dobrze:#7FC48F;
-  }
-}
-:root[data-theme="dark"]{
-  --papier:#16161B; --biurko:#1E1E25; --karta:#1C1C22;
-  --atrament:#EDEBE6; --grafit:#B6B5BE; --linia:#2E2E37; --linia-2:#3B3B46;
-  --wymiar:#7FA2FF; --wymiar-ciemny:#A9C0FF; --wymiar-tlo:#1F2740; --dobrze:#7FC48F;
-}
+/* Strona ma jeden, jasny wygląd („papier”) — także gdy telefon jest w trybie ciemnym. */
+:root{color-scheme:light}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -80,10 +69,10 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 }
 body{
   background:var(--papier);color:var(--atrament);
-  font-family:var(--sans);font-size:clamp(17px,1.1vw,18.5px);line-height:1.65;
+  font-family:var(--sans);font-size:clamp(17px,1.15vw,19px);line-height:1.65;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.15;letter-spacing:0;text-wrap:balance}
+h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.18;letter-spacing:-.005em;text-wrap:balance}
 p{max-width:66ch}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;height:auto;display:block}
@@ -171,7 +160,7 @@ section+section{border-top:1px solid var(--linia)}
 
 .hero{border-top:0;padding:clamp(44px,6vw,80px) 0 clamp(56px,7vw,96px);overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(36px,6vw,80px);align-items:center}
-.hero h1{font-size:clamp(2rem,4.1vw,3.25rem);margin-top:0;font-weight:800}
+.hero h1{font-size:clamp(2rem,4.1vw,3.25rem);margin-top:0;font-weight:700}
 .hero h1 .etyk{display:flex;font-weight:500;line-height:1.4;letter-spacing:.14em;text-wrap:initial;margin-bottom:18px}
 .hero h1 em{font-style:normal;color:var(--wymiar)}
 .hero .lead{margin-top:22px;font-size:1.12rem;color:var(--grafit)}
@@ -345,7 +334,6 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
 .pilot ol li b{display:block;font-weight:600}
 .pilot ol li span{display:block;grid-column:2;font-size:.9rem;color:color-mix(in srgb,var(--papier) 68%,transparent);margin-top:2px}
 .pilot .btn-main{margin-top:26px}
-@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .pilot{background:#0F0F14} }
 :root[data-theme="dark"] .pilot{background:#0F0F14}
 
 /* ---------- kontakt ---------- */
