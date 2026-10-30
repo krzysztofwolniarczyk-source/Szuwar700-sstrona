@@ -3,27 +3,27 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
-    <loc>https://krzysztofwolniarczyk-source.github.io/szuwar700-sstrona/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <loc>https://zapleczestolarni.pl/</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://krzysztofwolniarczyk-source.github.io/szuwar700-sstrona/rendery/render-01.jpg</image:loc>
+      <image:loc>https://zapleczestolarni.pl/rendery/render-01.jpg</image:loc>
       <image:title>Zabudowa przedpokoju Rukławki — wizualizacja mebli na wymiar</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://krzysztofwolniarczyk-source.github.io/szuwar700-sstrona/rendery/render-02.jpg</image:loc>
+      <image:loc>https://zapleczestolarni.pl/rendery/render-02.jpg</image:loc>
       <image:title>Kuchnia Jonkowo — wizualizacja kuchni na wymiar</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://krzysztofwolniarczyk-source.github.io/szuwar700-sstrona/rendery/rysunek-02.jpg</image:loc>
+      <image:loc>https://zapleczestolarni.pl/rendery/rysunek-02.jpg</image:loc>
       <image:title>Meblościanka z łóżkiem w szafie — rysunek techniczny z wymiarami</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://krzysztofwolniarczyk-source.github.io/szuwar700-sstrona/lot-jonkowo-poster.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://zapleczestolarni.pl/lot-jonkowo-poster.jpg</video:thumbnail_loc>
       <video:title>Kuchnia Jonkowo — lot kamery po projekcie mebli na wymiar</video:title>
-      <video:description>Przelot kamery po modelu kuchni na wymiar, z którego biuro szuwar700 przygotowało zestawienie formatek i ofertę dla stolarni.</video:description>
-      <video:content_loc>https://krzysztofwolniarczyk-source.github.io/szuwar700-sstrona/lot-jonkowo.mp4</video:content_loc>
+      <video:description>Przelot kamery po modelu kuchni na wymiar, z którego Wyceniarz przygotowało zestawienie formatek i ofertę dla stolarni.</video:description>
+      <video:content_loc>https://zapleczestolarni.pl/lot-jonkowo.mp4</video:content_loc>
       <video:duration>30</video:duration>
       <video:publication_date>2026-10-28</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>

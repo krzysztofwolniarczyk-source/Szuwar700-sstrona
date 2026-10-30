@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://krzysztofwolniarczyk-source.github.io/szuwar700-sstrona/sitemap.xml
+Sitemap: https://zapleczestolarni.pl/sitemap.xml
