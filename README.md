@@ -1,4 +1,4 @@
-# Wyceniarz. Zaplecze stolarni — strona (zapleczestolarni.pl)
+# Wyceniarz. Zaplecze stolarni — strona (wyceniarz.pl)
 
 Biuro wycen i ofert dla stolarni. Strona statyczna (HTML + CSS + JS w `index.html` + `polityka-prywatnosci.html`),
 bez zależności zewnętrznych (czcionki z własnego serwera) i bez procesu budowania — wystarczy wrzucić katalog na dowolny hosting
@@ -28,7 +28,7 @@ rendery/          15 renderów i rysunków z realizacji
 
 Wgraj całą zawartość repo (bez `.git`, `README.md`) do `public_html` na hostingu albo
 podepnij domenę pod GitHub Pages (plik `CNAME` z treścią `zapleczestolarni.pl` + rekordy DNS).
-`canonical`, `og:url`, `robots.txt` i `sitemap.xml` wskazują już na https://zapleczestolarni.pl/.
+`canonical`, `og:url`, `robots.txt` i `sitemap.xml` wskazują już na https://wyceniarz.pl/.
 
 Przed startem (z pakietu z 30.10.2026): odwiesić firmę w CEIDG, sprawdzić PKD 74.10,
 zwolnienie z VAT, skrzynkę wyceniarz@zapleczestolarni.pl i WhatsApp na 510 864 253.
