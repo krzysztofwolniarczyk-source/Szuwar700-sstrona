@@ -305,7 +305,9 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
 .cennik tr.wyroz td.cena{color:var(--wymiar)}
 .cennik tr.pilot td{background:color-mix(in srgb,var(--dobrze) 10%,transparent)}
 .cennik tr.pilot td.cena{color:var(--dobrze)}
-.cennik-nota{margin-top:16px;font-size:.9rem;color:var(--grafit)}
+.cennik-nota{margin-top:16px;font-size:.95rem;color:var(--grafit)}
+.cennik-nota b{color:var(--atrament)}
+.cennik-nota+.cennik-nota{margin-top:8px}
 .faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:44px}
 .faq article{padding:clamp(20px,2.6vw,28px)}
 .faq h3{font-size:1.08rem;line-height:1.25}
@@ -721,9 +723,9 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
         <thead><tr><th>Usługa</th><th>Cena</th><th>Uwagi</th></tr></thead>
         <tbody>
           <tr><td>Start: wpisanie zasad warsztatu i cennika</td><td class="cena">500 zł</td><td class="uw">jednorazowo · w abonamencie 0 zł</td></tr>
-          <tr><td>Wycena pojedynczego mebla albo zestawu do 6 szafek</td><td class="cena">120 zł</td><td class="uw">rysunek + zestawienie + oferta PDF</td></tr>
-          <tr><td>Wycena kuchni albo zabudowy</td><td class="cena">180–250 zł</td><td class="uw">zależnie od liczby szafek</td></tr>
-          <tr class="wyroz"><td>Abonament: 10 wycen miesięcznie</td><td class="cena">1 200 zł / mies.</td><td class="uw">kolejne po 100 zł · ekspres w cenie</td></tr>
+          <tr><td>Rysunek + zestawienie + oferta: pojedynczy mebel albo zestaw do 6 szafek</td><td class="cena">120 zł</td><td class="uw">rzut z wymiarami, formatki i okucia, oferta PDF z Twoim logo</td></tr>
+          <tr><td>Rysunek + zestawienie + oferta: kuchnia albo zabudowa</td><td class="cena">180–250 zł</td><td class="uw">zależnie od liczby szafek</td></tr>
+          <tr class="wyroz"><td>Abonament: 10 pakietów miesięcznie</td><td class="cena">1 200 zł / mies.</td><td class="uw">kolejne po 100 zł · ekspres w cenie</td></tr>
           <tr><td>Ekspres: wstępna cena tego samego dnia, komplet następnego dnia roboczego</td><td class="cena">+60 zł</td><td class="uw">w abonamencie w cenie</td></tr>
           <tr><td>Zamówienie materiałów z wyceny (lista do hurtowni w PDF)</td><td class="cena">60 zł</td><td class="uw">albo w abonamencie</td></tr>
           <tr><td>Render do oferty</td><td class="cena">80–150 zł / ujęcie</td><td class="uw">zależnie od sceny; lot kamery wyceniam osobno</td></tr>
@@ -731,6 +733,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
         </tbody>
       </table>
     </div>
+    <p class="cennik-nota rise"><b>Dla porównania:</b> projektant-freelancer liczy zwykle 150–300 zł za sam rysunek z wizualizacją. Tu za 120–250 zł dostajesz rysunek, zestawienie formatek do piły i gotową ofertę dla klienta.</p>
     <p class="cennik-nota rise">Rysunek, zestawienie i ofertę dostajesz w PDF; na życzenie zestawienie i wycenę także jako edytowalny plik XML — wtedy ceny wpisujesz sam, bez podawania mi cennika. Pliki są Twoje i zostają u Ciebie także po zakończeniu współpracy.</p>
   </div>
 </section>
@@ -967,8 +970,8 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       "areaServed": {"@type": "Country", "name": "Polska"},
       "audience": {"@type": "BusinessAudience", "name": "Stolarnie i firmy meblowe 1–5 osób"},
       "offers": [
-        {"@type": "Offer", "name": "Wycena pojedynczego mebla albo zestawu do 6 szafek", "price": "120", "priceCurrency": "PLN"},
-        {"@type": "Offer", "name": "Wycena kuchni albo zabudowy", "price": "180-250", "priceCurrency": "PLN"},
+        {"@type": "Offer", "name": "Rysunek, zestawienie formatek i oferta PDF — pojedynczy mebel albo zestaw do 6 szafek", "price": "120", "priceCurrency": "PLN"},
+        {"@type": "Offer", "name": "Rysunek, zestawienie formatek i oferta PDF — kuchnia albo zabudowa", "price": "180-250", "priceCurrency": "PLN"},
         {"@type": "Offer", "name": "Abonament 10 wycen miesięcznie", "price": "1200", "priceCurrency": "PLN"}
       ]
     },
