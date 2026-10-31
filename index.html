@@ -392,6 +392,19 @@ section+section{border-top:1px solid var(--linia)}
 .film figcaption b{font-family:var(--disp);font-size:1.25rem;font-weight:700;line-height:1.2;text-wrap:balance}
 .film figcaption span{color:var(--grafit);font-size:.95rem}
 .film-etyk{font:700 .74rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--wymiar)!important}
+.od{margin-top:40px}
+.od-naglowek{max-width:640px}
+.od-naglowek h3{font-size:clamp(1.35rem,2.4vw,1.8rem)}
+.od-naglowek p{margin-top:10px;color:var(--grafit)}
+.od-krok{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin:22px 0 0;padding:0;counter-reset:o}
+.od-krok li{position:relative;background:var(--karta);border:1px solid var(--linia);border-radius:var(--r);padding:6px 6px 14px}
+.od-krok li::before{counter-increment:o;content:counter(o,decimal-leading-zero);position:absolute;left:14px;top:14px;z-index:1;font:700 .7rem var(--mono);letter-spacing:.08em;color:#fff;background:rgba(21,21,26,.72);padding:4px 8px;border-radius:2px}
+.od-krok li:not(:last-child)::after{content:"";position:absolute;right:-22px;top:calc(50% - 60px);width:16px;height:16px;border-top:2px solid var(--wymiar);border-right:2px solid var(--wymiar);transform:rotate(45deg)}
+.od-krok a{display:block;aspect-ratio:4/5;overflow:hidden;border-radius:calc(var(--r) - 2px);background:var(--biurko)}
+.od-krok img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.od-krok a:hover img{transform:scale(1.02)}
+.od-krok b{display:block;margin:12px 8px 0;font-family:var(--disp);font-size:1.05rem}
+.od-krok span{display:block;margin:4px 8px 0;font-size:.9rem;color:var(--grafit)}
 .pw{margin-top:40px}
 .pw-naglowek{max-width:640px}
 .pw-naglowek h3{font-size:clamp(1.35rem,2.4vw,1.8rem)}
@@ -541,6 +554,8 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
   .dk,.kto,.pilot .wrap,.faq{grid-template-columns:1fr}
   .vs-grid{grid-template-columns:1fr}
   .pw-grid{grid-template-columns:1fr}
+  .od-krok{grid-template-columns:1fr;gap:14px}
+  .od-krok li::after{display:none}
   .vs-pdf-wrap{aspect-ratio:4/3}
   .vs-oferta{width:60%;right:3%;bottom:4%;padding:10px 12px}
   .vs-oferta table{font-size:.66rem}
@@ -891,6 +906,27 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       </figcaption>
     </figure>
 
+    <div class="od rise">
+      <div class="od-naglowek">
+        <h3>Od notatki po gotowy projekt</h3>
+        <p>Tak wygląda zapytanie, które przychodzi z warsztatu — i to, co wraca z biura. Szafa we wnęce 1500 × 2100 mm, z tej jednej kartki.</p>
+      </div>
+      <ol class="od-krok">
+        <li>
+          <a href="realizacje/notatka-szafa.jpg" data-caption="Notatka z pomiaru: szafa 1500 × 2100 — drążek, półki, buty na wysuwanych tackach Blum"><img src="realizacje/notatka-szafa-mini.jpg" alt="Kartka z zeszytu: odręczny szkic szafy 1500 na 2100 z podziałem na półki, drążek i wysuwane tacki na buty" width="640" height="800" loading="lazy" decoding="async"></a>
+          <b>Notatka z pomiaru</b><span>Kartka z zeszytu stolarza: wymiary wnęki, podział, „buty — wysuwane tacki Blum", rurka, półki, blenda 50.</span>
+        </li>
+        <li>
+          <a href="realizacje/projekt-szafa-wnetrze.jpg" data-caption="Projekt — wnętrze: drążek i półki po lewej, sześć wysuwanych tacek na buty po prawej, nadstawka u góry"><img src="realizacje/projekt-szafa-wnetrze-mini.jpg" alt="Render wnętrza szafy: po lewej drążek i półki, po prawej sześć wysuwanych tacek na buty, u góry nadstawka" width="640" height="800" loading="lazy" decoding="async"></a>
+          <b>Projekt: wnętrze</b><span>Model policzony co do milimetra — z niego idzie zestawienie formatek, lista okuć Blum i rozpis do hurtowni.</span>
+        </li>
+        <li>
+          <a href="realizacje/projekt-szafa-fronty.jpg" data-caption="Projekt — fronty: trzy fronty ramowe z nadstawką, szałwiowa zieleń, mosiężne uchwyty"><img src="realizacje/projekt-szafa-fronty-mini.jpg" alt="Render szafy z zamkniętymi frontami: trzy fronty ramowe i nadstawka w szałwiowej zieleni z mosiężnymi uchwytami" width="640" height="800" loading="lazy" decoding="async"></a>
+          <b>Projekt: fronty</b><span>To widzi klient w ofercie PDF: fronty ramowe w szałwiowej zieleni, mosiężne uchwyty, nadstawka pod sufit.</span>
+        </li>
+      </ol>
+    </div>
+
     <div class="pw rise">
       <div class="pw-naglowek">
         <h3>Projekt i wykonanie</h3>
@@ -1183,7 +1219,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
 
   /* powiększenie */
   var lb = $("#lb"), lbImg = $("#lb-img"), lbCap = $("#lb-cap"), lista = [], idx = 0, wracam = null;
-  function zbierz(){ lista = $$("#galeria .gal-item[href]").filter(function(a){ return !a.hidden; }); return lista.length; }
+  function zbierz(zakres){ var r = zakres || $("#galeria"); lista = Array.prototype.slice.call(r.querySelectorAll("a[href][data-caption]")).filter(function(a){ return !a.hidden; }); return lista.length; }
   function pokaz(i){
     if(!lista.length) return; idx = (i + lista.length) % lista.length;
     var a = lista[idx], im = a.querySelector("img");
@@ -1194,8 +1230,8 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
   function otworz(i, z){ wracam = z || null; lb.hidden = false; lb.classList.add("open"); document.body.style.overflow = "hidden"; pokaz(i); $("#lb-close").focus(); }
   function zamknij(){ lb.classList.remove("open"); lb.hidden = true; lbImg.src = ""; document.body.style.overflow = ""; if(wracam) wracam.focus(); }
   document.addEventListener("click", function(e){
-    var a = e.target.closest ? e.target.closest("#galeria .gal-item[href]") : null; if(!a) return;
-    e.preventDefault(); if(zbierz()) otworz(lista.indexOf(a), a);
+    var a = e.target.closest ? e.target.closest("#realizacje a[href][data-caption]") : null; if(!a) return;
+    e.preventDefault(); var zakres = a.closest("#galeria, .od-krok, .pw-para"); if(zbierz(zakres)) otworz(lista.indexOf(a), a);
   });
   $("#lb-close").addEventListener("click", zamknij);
   $("#lb-prev").addEventListener("click", function(){ pokaz(idx-1); });
