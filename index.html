@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Biuro wycen i ofert dla stolarni | Wyceniarz. Zaplecze stolarni</title>
-<meta name="description" content="Wyceny, rysunki, zestawienia formatek i oferty PDF dla stolarni. Liczone według Twoich zasad, zwykle w kilka godzin. 3 pierwsze wyceny bezpłatnie.">
+<meta name="description" content="Wyceny, rysunki, zestawienia formatek i oferty PDF dla stolarni — a dla majsterkowiczów rozpis i pliki z rozkroju bez pomyłek. Zwykle w kilka godzin. 3 pierwsze wyceny bezpłatnie.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#F7F5F0">
 
@@ -314,6 +314,8 @@ section+section{border-top:1px solid var(--linia)}
 .dk .cytat{font-family:var(--disp);font-size:clamp(1.25rem,2.3vw,1.6rem);font-weight:600;line-height:1.3;border-left:3px solid var(--wymiar);padding-left:20px;color:var(--atrament)}
 .dk .cytat small{display:block;margin-top:12px;font:600 .82rem var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--grafit)}
 .dk-lista{display:grid;gap:12px;margin-top:4px}
+.uwaga.majster{margin-top:32px;background:var(--karta);border-style:solid;border-color:var(--wymiar)}
+.uwaga.majster a{color:var(--wymiar);font-weight:700}
 .vs{margin-top:clamp(40px,6vw,64px);padding-top:clamp(32px,4vw,48px);border-top:1px solid var(--linia-2)}
 .vs-naglowek{max-width:640px}
 .vs-naglowek h3{font-size:clamp(1.35rem,2.4vw,1.8rem)}
@@ -721,6 +723,12 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       </ul>
     </div>
 
+    <p class="uwaga majster rise"><svg viewBox="0 0 24 24"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg>
+      <span><b>Nie masz stolarni? Majsterkujesz i chcesz zrobić mebel sam?</b> Też pomogę. Dostajesz rysunek z wymiarami,
+      zestawienie formatek i listę okuć — policzone tak, żebyś nie pomylił się w rozpisie. A jeśli nie masz jak ciąć płyty,
+      w cenie wysyłam pliki z rozkroju do hurtowni: ona tnie i okleja, Ty odbierasz gotowe formatki i skręcasz.
+      Cena jak za pojedynczy mebel — <a href="#cennik">od 120 zł</a>.</span></p>
+
     <div class="vs rise" aria-label="Porównanie: wycena na kartce i pakiet z biura">
       <div class="vs-naglowek">
         <h3>To samo zapytanie. Dwie oferty.</h3>
@@ -836,7 +844,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
             <div class="w ok"><span>Blum AVENTOS HK top 22K2300</span><span></span><span></span><span>1</span></div>
           </div></div>
         <div class="tresc"><h3>Rozpis do hurtowni po Twoim pomiarze</h3>
-          <p>Na wzorze zamówienia Twojej hurtowni, z kodami dekorów z jej systemu, okleinami i kierunkiem usłojenia. W cenie wyceny.</p></div>
+          <p>Na wzorze zamówienia Twojej hurtowni, z kodami dekorów z jej systemu, okleinami i kierunkiem usłojenia. Nie tniesz płyty u siebie? Pliki z rozkroju dla hurtowni też w cenie.</p></div>
       </article>
     </div>
 
@@ -1039,7 +1047,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
         <tbody>
           <tr class="pilot"><td>Pilotaż</td><td class="cena">3 wyceny bezpłatnie</td><td class="uw">w zamian za opinię i wspólny pomiar czasu</td></tr>
           <tr><td>Start: spisanie zasad Twojego warsztatu</td><td class="cena">0 zł</td><td class="uw">20–30 minut rozmowy albo karta pytań do wypełnienia</td></tr>
-          <tr><td>Rysunek + zestawienie + oferta: pojedynczy mebel albo zestaw do 6 szafek</td><td class="cena">120 zł</td><td class="uw">etap wstępny i wykonawczy, rozpis do hurtowni w cenie</td></tr>
+          <tr><td>Rysunek + zestawienie + oferta: pojedynczy mebel albo zestaw do 6 szafek</td><td class="cena">120 zł</td><td class="uw">etap wstępny i wykonawczy, rozpis i pliki z rozkroju do hurtowni w cenie · także dla majsterkowiczów</td></tr>
           <tr><td>Rysunek + zestawienie + oferta: kuchnia albo zabudowa</td><td class="cena">180–250 zł</td><td class="uw">zależnie od liczby szafek, oba etapy w cenie</td></tr>
           <tr><td>Ekspres: wycena wstępna w 1 dzień roboczy</td><td class="cena">+50 zł</td><td class="uw">w abonamencie w cenie</td></tr>
           <tr class="wyroz"><td>Abonament, jeśli chcesz — od piątej wyceny</td><td class="cena">1 200 zł / mies.</td><td class="uw">10 wycen, ekspres w cenie, kolejne po 100 zł</td></tr>
@@ -1090,7 +1098,14 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       <article class="karta rise">
         <h3>„Hurtownia robi mi rozkrój za darmo."</h3>
         <p>I niech robi. Nie konkuruję z hurtownią — rozkrój i oklejanie zostają u niej. Ja dostarczam rozpis w jej formacie,
-          bez błędów w okleinach i wymiarach, więc nikt nie dzwoni z poprawkami. Rozpis jest w cenie wyceny.</p>
+          bez błędów w okleinach i wymiarach, więc nikt nie dzwoni z poprawkami. Rozpis jest w cenie wyceny — a jeśli nie tniesz
+          płyty u siebie, w cenie wysyłam też pliki z rozkroju w formacie Twojej hurtowni (np. eRozkroje). Ona tnie i okleja, Ty odbierasz formatki.</p>
+      </article>
+      <article class="karta rise">
+        <h3>„Nie mam stolarni. Chcę zrobić mebel sam, ale boję się pomyłki w rozpisie."</h3>
+        <p>To właśnie dla Ciebie. Przysyłasz szkic i wymiary, dostajesz rysunek z wymiarami, zestawienie formatek i listę okuć
+          z numerami katalogowymi — sprawdzone według listy kontrolnej. Jeśli nie masz piły, dołączam w cenie pliki z rozkroju
+          dla hurtowni: płyta przyjeżdża pocięta i oklejona, Ty tylko wiercisz i skręcasz. Cena jak za pojedynczy mebel, od 120 zł.</p>
       </article>
       <article class="karta rise">
         <h3>„Bierzesz prowizje od producentów albo hurtowni?"</h3>
@@ -1308,7 +1323,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       "url": "https://wyceniarz.pl/",
       "image": "https://wyceniarz.pl/og-image.jpg",
       "description": "Zdalne biuro wycen dla małych stolarni: wycena mebli na wymiar, rysunek techniczny z wymiarami, zestawienie formatek i okuć, oferta PDF pod marką warsztatu i rozpis do hurtowni — zwykle w kilka godzin, najpóźniej w 2 dni robocze.",
-      "serviceType": ["Wycena mebli na wymiar", "Rysunki techniczne mebli", "Zestawienie formatek i okuć", "Rozpis do hurtowni", "Oferty PDF dla stolarni", "Wizualizacje mebli", "Wycena bez podawania cennika (edytowalny XML)"],
+      "serviceType": ["Wycena mebli na wymiar", "Rozpis formatek i pliki z rozkroju dla majsterkowiczów", "Rysunki techniczne mebli", "Zestawienie formatek i okuć", "Rozpis do hurtowni", "Oferty PDF dla stolarni", "Wizualizacje mebli", "Wycena bez podawania cennika (edytowalny XML)"],
       "telephone": "+48510864253",
       "email": "wyceniarz@zapleczestolarni.pl",
       "taxID": "7421858014",
@@ -1316,7 +1331,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       "founder": {"@type": "Person", "name": "Krzysztof Wolniarczyk", "jobTitle": "Stolarz, projektant mebli na wymiar"},
       "priceRange": "120–1200 PLN",
       "areaServed": {"@type": "Country", "name": "Polska"},
-      "audience": {"@type": "BusinessAudience", "name": "Stolarnie i firmy meblowe 1–5 osób"},
+      "audience": [{"@type": "BusinessAudience", "name": "Stolarnie i firmy meblowe 1–5 osób"}, {"@type": "Audience", "name": "Majsterkowicze robiący meble samodzielnie"}],
       "offers": [
         {"@type": "Offer", "name": "Pilotaż: 3 wyceny bezpłatnie", "price": "0", "priceCurrency": "PLN"},
         {"@type": "Offer", "name": "Rysunek, zestawienie formatek i oferta PDF — pojedynczy mebel albo zestaw do 6 szafek (oba etapy, rozpis w cenie)", "price": "120", "priceCurrency": "PLN"},
