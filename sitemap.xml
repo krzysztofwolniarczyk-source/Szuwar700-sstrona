@@ -9,21 +9,21 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://wyceniarz.pl/rendery/render-01.jpg</image:loc>
-      <image:title>Zabudowa przedpokoju Rukławki — wizualizacja mebli na wymiar</image:title>
+      <image:title>Zabudowa przedpokoju — wizualizacja mebli na wymiar</image:title>
     </image:image>
     <image:image>
       <image:loc>https://wyceniarz.pl/rendery/render-02.jpg</image:loc>
-      <image:title>Kuchnia Jonkowo — wizualizacja kuchni na wymiar</image:title>
+      <image:title>Kuchnia z wyspą — wizualizacja kuchni na wymiar</image:title>
     </image:image>
     <image:image>
       <image:loc>https://wyceniarz.pl/rendery/rysunek-02.jpg</image:loc>
       <image:title>Meblościanka z łóżkiem w szafie — rysunek techniczny z wymiarami</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://wyceniarz.pl/lot-jonkowo-poster.jpg</video:thumbnail_loc>
-      <video:title>Kuchnia Jonkowo — lot kamery po projekcie mebli na wymiar</video:title>
+      <video:thumbnail_loc>https://wyceniarz.pl/lot-kuchnia-poster.jpg</video:thumbnail_loc>
+      <video:title>Kuchnia z wyspą — lot kamery po projekcie mebli na wymiar</video:title>
       <video:description>Przelot kamery po modelu kuchni na wymiar, z którego Wyceniarz przygotowało zestawienie formatek i ofertę dla stolarni.</video:description>
-      <video:content_loc>https://wyceniarz.pl/lot-jonkowo.mp4</video:content_loc>
+      <video:content_loc>https://wyceniarz.pl/lot-kuchnia.mp4</video:content_loc>
       <video:duration>30</video:duration>
       <video:publication_date>2026-10-28</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>

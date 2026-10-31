@@ -9,9 +9,9 @@ bez zależności zewnętrznych (czcionki z własnego serwera) i bez procesu budo
 ```
 index.html        strona (treść, style, skrypty)
 og-image.jpg      podgląd linku w Messengerze / WhatsAppie / Facebooku (1200×630)
-lot-jonkowo.mp4   lot kamery po kuchni Jonkowo, 30 s, H.264 bez dźwięku (4,3 MB)
-lot-jonkowo.webm  to samo w VP9 (3,0 MB) — przeglądarka bierze lżejszy plik
-lot-jonkowo-poster.jpg  klatka startowa filmu
+lot-kuchnia.mp4   lot kamery po kuchni z wyspą, 30 s, H.264 bez dźwięku (4,3 MB)
+lot-kuchnia.webm  to samo w VP9 (3,0 MB) — przeglądarka bierze lżejszy plik
+lot-kuchnia-poster.jpg  klatka startowa filmu
 kartka.jpg        odręczna wycena do bloku „Kartka vs pakiet”
 realizacje/       pary projekt–wykonanie (render + zdjęcie po montażu)
 pliki/            PDF: oferta i karta pytań technicznych
