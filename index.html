@@ -320,11 +320,15 @@ section+section{border-top:1px solid var(--linia)}
 .vs-naglowek p{margin-top:10px;color:var(--grafit)}
 .vs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:26px}
 .vs-karta{margin:0;background:var(--karta);border:1px solid var(--linia);border-radius:var(--r);overflow:hidden}
-.vs-karta>img,.vs-pdf-wrap{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;background:#fff}
-.vs-pdf-wrap{position:relative}
-.vs-pdf-wrap>img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:14px 16px 14px 14px}
-.vs-oferta{position:absolute;right:4%;bottom:6%;width:54%;background:var(--karta);border:1px solid var(--linia);border-radius:var(--r);padding:12px 14px;box-shadow:0 14px 36px rgba(0,0,0,.14)}
-.vs-oferta .so-tytul{font-size:.85rem}
+.vs-karta{display:flex;flex-direction:column}
+.vs-karta>img{display:block;width:100%;flex:1;min-height:0;object-fit:cover;background:#fff}
+.vs-mozaika{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:6px}
+.vs-mozaika a{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:2px;border:1px solid var(--linia);background:#fff}
+.vs-mozaika a.vs-glowny{grid-column:1/-1;aspect-ratio:3/2}
+.vs-mozaika img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.vs-mozaika a.rys img{object-fit:contain;padding:3px}
+.vs-mozaika a:hover img{transform:scale(1.02)}
+.vs-karta figcaption{margin-top:auto}
 .vs-karta figcaption{padding:14px 16px 16px;font-size:.95rem;color:var(--grafit);border-top:1px solid var(--linia)}
 .vs-karta figcaption b{display:block;font-family:var(--disp);font-size:1.05rem;color:var(--atrament);margin-bottom:4px}
 .vs-pdf{border-color:var(--wymiar)}
@@ -572,9 +576,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
   .om-etap>p{min-height:0}
   .od-krok{grid-template-columns:1fr;gap:14px}
   .od-krok li::after{display:none}
-  .vs-pdf-wrap{aspect-ratio:4/3}
-  .vs-oferta{width:60%;right:3%;bottom:4%;padding:10px 12px}
-  .vs-oferta table{font-size:.66rem}
+  .vs-karta>img{aspect-ratio:3/2;flex:none}
   .film{grid-template-columns:1fr}
   .film figcaption{padding:4px 6px 8px}
   .liczby{grid-template-columns:1fr}
@@ -726,24 +728,18 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       </div>
       <div class="vs-grid">
         <figure class="vs-karta">
-          <img src="kartka.jpg" alt="Odręczny szkic wyceny na kartce: blat 2500 na 1300, rzut szafek z góry i przekrój boczny z wymiarami 575" width="900" height="642" loading="lazy" decoding="async">
-          <figcaption><b>Kartka</b>Wymiary są, ale klient nie widzi mebla, nie ma czego porównać z ceną, a formatki i tak liczysz jeszcze raz przed cięciem.</figcaption>
+          <img src="kartka.jpg" alt="Odręczny szkic wyspy kuchennej na kartce: blat 2500 na 1300, osiem szafek po 575 w rzucie z góry i przekrój boczny" width="900" height="642" loading="lazy" decoding="async">
+          <figcaption><b>Kartka</b>Wyspa 2300 × 1100: blat, osiem szafek po 575, przekrój. Wymiary są, ale klient nie widzi mebla, nie ma czego porównać z ceną, a formatki i tak liczysz jeszcze raz przed cięciem.</figcaption>
         </figure>
         <figure class="vs-karta vs-pdf">
-          <div class="vs-pdf-wrap">
-            <img src="rendery/rysunek-02-mini.jpg" alt="Rysunek techniczny meblościanki z wymiarami — widok z przodu" width="900" height="539" loading="lazy" decoding="async">
-            <div class="s-oferta vs-oferta" aria-hidden="true">
-              <div class="so-nag"><span>Oferta nr 2026/10/041</span><span class="so-logo" role="img" aria-label="Logo K&amp;B Meble Na Wymiar"><svg viewBox="0 0 640 240" aria-hidden="true"><rect width="640" height="240" rx="10" fill="#0B0B0D"/><rect x="26" y="26" width="188" height="188" fill="none" stroke="#F59E0B" stroke-width="8"/><text x="120" y="154" text-anchor="middle" font-family="Lato,Arial,sans-serif" font-weight="900" font-size="96" fill="#fff">K<tspan fill="#F59E0B" font-size="66" dy="-6">&amp;</tspan><tspan dy="6">B</tspan></text><text x="246" y="128" font-family="Lato,Arial,sans-serif" font-weight="900" font-size="86" fill="#fff" letter-spacing="4">MEBLE</text><line x1="248" y1="172" x2="286" y2="172" stroke="#F59E0B" stroke-width="5"/><text x="300" y="185" font-family="Lato,Arial,sans-serif" font-weight="700" font-size="34" fill="#fff" letter-spacing="7">NA WYMIAR</text><line x1="552" y1="172" x2="590" y2="172" stroke="#F59E0B" stroke-width="5"/></svg></span></div>
-              <p class="so-tytul">Zabudowa przedpokoju — grafit i dąb</p>
-              <table>
-                <tr><td>Szafa 2-drzwiowa z lustrem</td><td>6 840 zł</td></tr>
-                <tr><td>Wnęka: panele, siedzisko</td><td>3 120 zł</td></tr>
-                <tr class="suma"><td>Razem</td><td>11 420 zł</td></tr>
-              </table>
-              <p class="so-przyklad">Przykład: oferta mojej stolarni</p>
-            </div>
+          <div class="vs-mozaika">
+            <a class="vs-glowny" href="realizacje/wyspa-render-b.jpg" data-caption="Pakiet z biura — render wyspy 2300 × 1100 z tej kartki: osiem szafek po 575, blat ze sklejki 2500 × 1300, nóżki bez cokołu"><img src="realizacje/wyspa-render-b-mini.jpg" alt="Render wyspy kuchennej 2300 na 1100 z blatem ze sklejki, zaprojektowanej z odręcznego szkicu" width="900" height="596" loading="lazy" decoding="async"></a>
+            <a href="realizacje/wyspa-render-a.jpg" data-caption="Render wyspy od drugiej strony — rząd A, głębokość 500"><img src="realizacje/wyspa-render-a-mini.jpg" alt="Render wyspy od strony rzędu A" width="900" height="596" loading="lazy" decoding="async"></a>
+            <a class="rys" href="realizacje/wyspa-przekroj.jpg" data-caption="Przekrój poziomy na wysokości 500 mm — rzędy A i B po cztery szafki, obrys blatu 2500 × 1300"><img src="realizacje/wyspa-przekroj-mini.jpg" alt="Rysunek: przekrój poziomy wyspy z wymiarami korpusów i obrysem blatu" width="900" height="562" loading="lazy" decoding="async"></a>
+            <a class="rys" href="realizacje/wyspa-formatki.jpg" data-caption="Zestawienie formatek do hurtowni: element, wymiar, ilość, materiał, obrzeże — w formacie eRozkroje"><img src="realizacje/wyspa-formatki-mini.jpg" alt="Zrzut zestawienia formatek: boki, wieńce, półki, drzwi, plecy i blat z wymiarami i obrzeżem" width="900" height="340" loading="lazy" decoding="async"></a>
+            <a class="rys" href="realizacje/wyspa-okucia.jpg" data-caption="Lista okuć i akcesoriów z numerami katalogowymi: zawiasy Blum, nóżki Häfele, podpórki i konfirmaty GTV"><img src="realizacje/wyspa-okucia-mini.jpg" alt="Zrzut listy okuć z numerami katalogowymi Blum, Häfele i GTV" width="900" height="513" loading="lazy" decoding="async"></a>
           </div>
-          <figcaption><b>Pakiet z biura</b>Rysunek z wymiarami, zestawienie formatek i oferta PDF z Twoim logo. Klient widzi, za co płaci — i odpisuje Tobie, nie sąsiadowi.</figcaption>
+          <figcaption><b>Pakiet z biura</b>Z tej samej kartki: dwa rendery, przekrój z wymiarami, zestawienie formatek do hurtowni i lista okuć z numerami katalogowymi — gotowe do oferty i do cięcia. Klient widzi, za co płaci, a Ty nie liczysz formatek drugi raz. Kliknij, żeby powiększyć.</figcaption>
         </figure>
       </div>
     </div>
@@ -1284,8 +1280,8 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
   function otworz(i, z){ wracam = z || null; lb.hidden = false; lb.classList.add("open"); document.body.style.overflow = "hidden"; pokaz(i); $("#lb-close").focus(); }
   function zamknij(){ lb.classList.remove("open"); lb.hidden = true; lbImg.src = ""; document.body.style.overflow = ""; if(wracam) wracam.focus(); }
   document.addEventListener("click", function(e){
-    var a = e.target.closest ? e.target.closest("#realizacje a[href][data-caption]") : null; if(!a) return;
-    e.preventDefault(); var zakres = a.closest("#galeria, .od-krok, .pw-para, .om"); if(zbierz(zakres)) otworz(lista.indexOf(a), a);
+    var a = e.target.closest ? e.target.closest("#realizacje a[href][data-caption], .vs a[href][data-caption]") : null; if(!a) return;
+    e.preventDefault(); var zakres = a.closest("#galeria, .od-krok, .pw-para, .om, .vs-mozaika"); if(zbierz(zakres)) otworz(lista.indexOf(a), a);
   });
   $("#lb-close").addEventListener("click", zamknij);
   $("#lb-prev").addEventListener("click", function(){ pokaz(idx-1); });
