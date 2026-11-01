@@ -532,7 +532,8 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
 .plik{display:grid;gap:6px;text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s}
 .plik:hover{border-color:var(--wymiar);box-shadow:0 8px 24px rgba(0,0,0,.06)}
 .plik strong{font-family:var(--disp);font-size:1.15rem;font-weight:700}
-.plik>span:last-child{font-size:.92rem;color:var(--grafit)}
+.plik>span:last-child,.plik>span.plik-opis{font-size:.92rem;color:var(--grafit)}
+.plik>span.plik-wersje{font-size:.95rem}
 .kk a.line:hover{color:var(--wymiar-ciemny)}
 .kk .do-uzup{display:inline-block;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:1px dashed var(--linia-2);padding:4px 8px;border-radius:2px;color:var(--grafit);margin-top:10px}
 
@@ -883,7 +884,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
         <span class="czas">oba etapy w cenie</span></li>
     </ol>
     <p class="uwaga rise"><svg viewBox="0 0 24 24"><path d="M4 12h16M12 4v16"/></svg>
-      <span><b>Nic nie idzie do cięcia bez Twojego pomiaru.</b> Wycena wstępna mówi wprost, co sprawdzić na miejscu, więc klient nie dostaje niespodzianki w cenie. Zasady warsztatu spisujemy raz, na starcie: 20–30 minut rozmowy albo karta pytań technicznych do wypełnienia — bez opłaty.</span></p>
+      <span><b>Nic nie idzie do cięcia bez Twojego pomiaru.</b> Wycena wstępna mówi wprost, co sprawdzić na miejscu, więc klient nie dostaje niespodzianki w cenie. Zasady warsztatu spisujemy raz, na starcie: 20–30 minut rozmowy albo karta zasad budowy mebli do wypełnienia — bez opłaty.</span></p>
   </div>
 </section>
 
@@ -1061,7 +1062,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       </table>
     </div>
     <p class="cennik-nota rise"><b>Dla porównania:</b> projektant-freelancer liczy zwykle 150–300 zł za sam rysunek z wizualizacją. Tu za 120–250 zł dostajesz rysunek, zestawienie formatek do piły i gotową ofertę dla klienta.</p>
-    <p class="cennik-nota rise">Rysunek, zestawienie, ofertę i rozpis dostajesz w PDF; na życzenie zestawienie i wycenę także jako edytowalny plik XML — wtedy ceny wpisujesz sam, bez podawania mi cennika. Pliki są Twoje i zostają u Ciebie także po zakończeniu współpracy. Pełna oferta, karta pytań technicznych i lista na start współpracy (do wypełnienia) są <a href="#pobierz">do pobrania</a> niżej.</p>
+    <p class="cennik-nota rise">Rysunek, zestawienie, ofertę i rozpis dostajesz w PDF; na życzenie zestawienie i wycenę także jako edytowalny plik XML — wtedy ceny wpisujesz sam, bez podawania mi cennika. Pliki są Twoje i zostają u Ciebie także po zakończeniu współpracy. Pełna oferta, zasady budowy mebli i lista na start współpracy (do wypełnienia) są <a href="#pobierz">do pobrania</a> niżej.</p>
   </div>
 </section>
 
@@ -1144,7 +1145,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
     </div>
     <ol class="rise">
       <li><b>Rozmowa 20 minut</b><span>Najlepiej w warsztacie. Twoje liczby: zapytań tygodniowo, minut na wycenę, wygranych z dziesięciu.</span></li>
-      <li><b>Spisuję Twoje zasady</b><span>Grubości, szczeliny, zawiasy, cennik — raz: 20–30 minut rozmowy albo karta pytań technicznych. Bez opłaty.</span></li>
+      <li><b>Spisuję Twoje zasady</b><span>Grubości, szczeliny, zawiasy, cennik — raz: 20–30 minut rozmowy albo karta zasad budowy mebli. Bez opłaty.</span></li>
       <li><b>Trzy zapytania, trzy pakiety</b><span>Każdy w dwa dni robocze. Porównujesz z tym, co zrobiłbyś sam.</span></li>
       <li><b>Decyzja</b><span>Zostajesz na abonamencie, bierzesz pojedyncze wyceny albo dziękujesz. Bez haczyków.</span></li>
     </ol>
@@ -1182,12 +1183,12 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       </div>
     </div>
 
-    <h3 class="pobierz-h rise" id="pobierz">Do pobrania: lista na start (Word i PDF), oferta i karta pytań technicznych</h3>
+    <h3 class="pobierz-h rise" id="pobierz">Do pobrania: lista na start, zasady budowy mebli i oferta</h3>
     <div class="pobierz rise">
       <div class="karta plik plik-wyroz">
         <span class="etyk">Do wypełnienia · 2 strony</span>
         <strong>Lista na start współpracy</strong>
-        <span>Czego potrzebuję od stolarni: dane, logo, hurtownia, ceny, liczby do pilotażu. Wypełniasz i odsyłasz na WhatsApp lub mailem.</span>
+        <span class="plik-opis">Czego potrzebuję od stolarni: dane, logo, hurtownia, ceny, liczby do pilotażu. Wypełniasz i odsyłasz na WhatsApp lub mailem.</span>
         <span class="plik-wersje"><a href="pliki/wyceniarz-lista-startowa.docx" download>Word (.docx) →</a><a href="pliki/wyceniarz-lista-startowa.pdf" target="_blank" rel="noopener" download>PDF →</a></span>
       </div>
       <a class="karta plik" href="pliki/wyceniarz-oferta.pdf" target="_blank" rel="noopener">
@@ -1195,11 +1196,12 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
         <strong>Oferta Wyceniarza</strong>
         <span>Wszystko z tej strony w jednym pliku — do wydruku albo przesłania wspólnikowi.</span>
       </a>
-      <a class="karta plik" href="pliki/wyceniarz-karta-pytan-technicznych.pdf" target="_blank" rel="noopener">
-        <span class="etyk">PDF · 4 strony</span>
-        <strong>Karta pytań technicznych</strong>
-        <span>39 pytań o zasady Twojego warsztatu. Wypełniasz raz, na starcie, i odsyłasz zdjęcie albo skan.</span>
-      </a>
+      <div class="karta plik">
+        <span class="etyk">Do wypełnienia · 31 pytań</span>
+        <strong>Zasady budowy mebli</strong>
+        <span class="plik-opis">Jak budujesz korpusy, fronty, okleiny i okucia w Twoim warsztacie. Wypełniasz raz, na starcie, i odsyłasz.</span>
+        <span class="plik-wersje"><a href="pliki/wyceniarz-zasady-budowy-mebli.docx" download>Word (.docx) →</a><a href="pliki/wyceniarz-zasady-budowy-mebli.pdf" target="_blank" rel="noopener" download>PDF →</a></span>
+      </div>
     </div>
   </div>
 </section>
