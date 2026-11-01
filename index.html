@@ -527,6 +527,8 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
 .pobierz-h{margin-top:40px;font-size:1.25rem}
 .pobierz{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
 .plik-wyroz{border-color:var(--wymiar)!important;box-shadow:inset 3px 0 0 var(--wymiar)}
+.plik-wersje{display:flex!important;flex-wrap:wrap;gap:8px 22px;margin-top:12px}
+.plik-wersje a{color:var(--wymiar);font-weight:700}
 .plik{display:grid;gap:6px;text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s}
 .plik:hover{border-color:var(--wymiar);box-shadow:0 8px 24px rgba(0,0,0,.06)}
 .plik strong{font-family:var(--disp);font-size:1.15rem;font-weight:700}
@@ -1180,13 +1182,14 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       </div>
     </div>
 
-    <h3 class="pobierz-h rise" id="pobierz">Do pobrania: lista na start, oferta i karta pytań technicznych (PDF)</h3>
+    <h3 class="pobierz-h rise" id="pobierz">Do pobrania: lista na start (Word i PDF), oferta i karta pytań technicznych</h3>
     <div class="pobierz rise">
-      <a class="karta plik plik-wyroz" href="pliki/wyceniarz-lista-startowa.pdf" target="_blank" rel="noopener" download>
-        <span class="etyk">PDF do wypełnienia · 2 strony</span>
+      <div class="karta plik plik-wyroz">
+        <span class="etyk">Do wypełnienia · 2 strony</span>
         <strong>Lista na start współpracy</strong>
-        <span>Czego potrzebuję od stolarni: dane, logo, hurtownia, ceny, liczby do pilotażu. Wypełniasz w telefonie albo drukujesz i odsyłasz na WhatsApp lub mailem.</span>
-      </a>
+        <span>Czego potrzebuję od stolarni: dane, logo, hurtownia, ceny, liczby do pilotażu. Wypełniasz i odsyłasz na WhatsApp lub mailem.</span>
+        <span class="plik-wersje"><a href="pliki/wyceniarz-lista-startowa.docx" download>Word (.docx) →</a><a href="pliki/wyceniarz-lista-startowa.pdf" target="_blank" rel="noopener" download>PDF →</a></span>
+      </div>
       <a class="karta plik" href="pliki/wyceniarz-oferta.pdf" target="_blank" rel="noopener">
         <span class="etyk">PDF · 5 stron</span>
         <strong>Oferta Wyceniarza</strong>
