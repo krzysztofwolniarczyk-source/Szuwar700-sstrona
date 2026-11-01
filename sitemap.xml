@@ -29,4 +29,14 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
+  <url>
+    <loc>https://wyceniarz.pl/majsterkowicze</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://wyceniarz.pl/realizacje/projekt-szafa-wnetrze.jpg</image:loc>
+      <image:title>Projekt szafy we wnęce ze szkicu — rozpis do samodzielnego wykonania</image:title>
+    </image:image>
+  </url>
 </urlset>
