@@ -39,4 +39,10 @@
       <image:title>Projekt szafy we wnęce ze szkicu — rozpis do samodzielnego wykonania</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://wyceniarz.pl/realizacje</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
