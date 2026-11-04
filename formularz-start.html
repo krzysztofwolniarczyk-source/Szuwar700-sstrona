@@ -92,7 +92,7 @@ F.addEventListener('input',zapisz);F.addEventListener('change',function(e){if(e.
 document.getElementById('wa').addEventListener('click',function(){var txt=tekst(),pl=[].slice.call(document.getElementById('zal').files||[]);
  if(pl.length&&navigator.canShare&&navigator.canShare({files:pl})){navigator.share({title:NAZWA,text:txt,files:pl}).catch(function(){});return;}
  if(pl.length)toast('Załączniki dodaj w WhatsAppie osobno');window.open('https://wa.me/48510864253?text='+encodeURIComponent(txt),'_blank');});
-document.getElementById('mail').addEventListener('click',function(){location.href='mailto:wyceniarz@zapleczestolarni.pl?subject='+encodeURIComponent(NAZWA)+'&body='+encodeURIComponent(tekst());});
+document.getElementById('mail').addEventListener('click',function(){location.href='mailto:kontakt@wyceniarz.pl?subject='+encodeURIComponent(NAZWA)+'&body='+encodeURIComponent(tekst());});
 document.getElementById('kopiuj').addEventListener('click',function(){var t=tekst();(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){toast('Skopiowano odpowiedzi')},function(){prompt('Skopiuj odpowiedzi:',t)});});
 document.getElementById('czysc').addEventListener('click',function(){if(!confirm('Wyczyścić wszystkie odpowiedzi?'))return;F.reset();try{localStorage.removeItem(KEY)}catch(e){}F.querySelectorAll('.multi').forEach(multiSum);F.querySelectorAll('select').forEach(function(s){s.classList.add('puste')});postep();});
 wczytaj();postep();

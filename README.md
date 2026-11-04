@@ -31,5 +31,5 @@ podepnij domenę pod GitHub Pages (plik `CNAME` z treścią `zapleczestolarni.pl
 `canonical`, `og:url`, `robots.txt` i `sitemap.xml` wskazują już na https://wyceniarz.pl/.
 
 Przed startem (z pakietu z 30.10.2026): odwiesić firmę w CEIDG, sprawdzić PKD 74.10,
-zwolnienie z VAT, skrzynkę wyceniarz@zapleczestolarni.pl i WhatsApp na 510 864 253.
+zwolnienie z VAT, skrzynkę kontakt@wyceniarz.pl i WhatsApp na 510 864 253.
 Ceny są w `index.html` (sekcja Cennik) i w `pliki/wyceniarz-oferta.pdf` — zmieniaj oba miejsca.
