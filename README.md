@@ -7,29 +7,27 @@ bez zależności zewnętrznych (czcionki z własnego serwera) i bez procesu budo
 ## Struktura
 
 ```
-index.html        strona (treść, style, skrypty)
-og-image.jpg      podgląd linku w Messengerze / WhatsAppie / Facebooku (1200×630)
-lot-kuchnia.mp4   lot kamery po kuchni z wyspą, 30 s, H.264 bez dźwięku (4,3 MB)
-lot-kuchnia.webm  to samo w VP9 (3,0 MB) — przeglądarka bierze lżejszy plik
+index.html              strona główna (treść, style, skrypty)
+realizacje.html         pełna galeria, film i historie realizacji K&B
+majsterkowicze.html     oferta dla osób robiących meble samodzielnie
+formularz-start.html    lista na start współpracy — do wypełnienia w telefonie
+formularz-zasady.html   zasady budowy mebli — do wypełnienia w telefonie
+regulamin.html, polityka-prywatnosci.html
+logo/                   logo Wyceniarza (SVG: czarne, brązowe, białe, na drewnie),
+                        favicon-32.png, apple-touch-icon.png
+og-image.jpg            podgląd linku w Messengerze / WhatsAppie / Facebooku (1200×630)
+lot-kuchnia.mp4/.webm   lot kamery po kuchni z wyspą, 30 s, bez dźwięku
 lot-kuchnia-poster.jpg  klatka startowa filmu
-kartka.jpg        odręczna wycena do bloku „Kartka vs pakiet”
-realizacje/       pary projekt–wykonanie (render + zdjęcie po montażu)
-pliki/            PDF: oferta i karta pytań technicznych
-fonty/            Lora, Lato, IBM Plex Mono (woff2, latin + latin-ext)
-polityka-prywatnosci.html
-rendery/          15 renderów i rysunków z realizacji
-  render-NN.jpg        pełny rozmiar (lightbox)
-  render-NN-mini.jpg   miniatura (galeria)
-  rysunek-NN(.jpg|-mini.jpg)
-  manifest.json        lista plików z opisami
+kartka.jpg              odręczna wycena do bloku „Kartka vs pakiet”
+realizacje/             zdjęcia i rysunki realizacji (pełne + -mini)
+rendery/                15 renderów i rysunków z realizacji
+pliki/                  do pobrania: oferta PDF, lista na start i zasady (PDF z polami + Word)
+fonty/                  Lora, Lato, IBM Plex Mono (woff2, latin + latin-ext)
 ```
 
-## Publikacja na zapleczestolarni.pl
+## Publikacja
 
-Wgraj całą zawartość repo (bez `.git`, `README.md`) do `public_html` na hostingu albo
-podepnij domenę pod GitHub Pages (plik `CNAME` z treścią `zapleczestolarni.pl` + rekordy DNS).
-`canonical`, `og:url`, `robots.txt` i `sitemap.xml` wskazują już na https://wyceniarz.pl/.
-
-Przed startem (z pakietu z 30.10.2026): odwiesić firmę w CEIDG, sprawdzić PKD 74.10,
-zwolnienie z VAT, skrzynkę kontakt@wyceniarz.pl i WhatsApp na 510 864 253.
+GitHub Pages z gałęzi `main`, domena `wyceniarz.pl` (plik `CNAME`). Statystyki: GoatCounter
+(szuwar700.goatcounter.com). Kontakt na stronie: kontakt@wyceniarz.pl (główny),
+wyceniarz@zapleczestolarni.pl (drugi), WhatsApp 510 864 253.
 Ceny są w `index.html` (sekcja Cennik) i w `pliki/wyceniarz-oferta.pdf` — zmieniaj oba miejsca.
