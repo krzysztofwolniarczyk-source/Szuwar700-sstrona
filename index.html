@@ -650,6 +650,14 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
 .kk .mail-drugi{display:block;margin-top:4px;font-size:.92rem;color:var(--grafit);word-break:break-word}
 .kk .mail-drugi a{text-decoration:underline;text-underline-offset:3px}
 .kk strong{word-break:break-word}
+.cennik tr.pilot{background:transparent;color:var(--atrament)}
+.pr-siatka a:first-child{grid-column:auto}
+.pr-siatka a.rys img{object-fit:contain}
+@media (max-width:640px){
+  .cennik tr.pilot{background:color-mix(in srgb,var(--dobrze) 10%,transparent)!important}
+  .cennik tr.wyroz{background:var(--wymiar-tlo)!important}
+  .cennik tr.pilot td,.cennik tr.wyroz td{background:transparent!important}
+}
 </style>
 </head>
 
@@ -690,6 +698,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
   <a href="#pytania">Pytania</a>
   <a href="#kontakt">Kontakt</a>
   <a href="majsterkowicze.html">Robisz meble sam?</a>
+  <a href="projektanci.html">Projektant? Architekt?</a>
   <a href="#pilotaz">Pilotaż</a>
 </nav>
 
@@ -1143,7 +1152,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       <nav aria-label="Menu w stopce">
         <a href="#dla-kogo">Dla kogo</a><a href="#pakiet">Co dostajesz</a><a href="#jak">Jak to działa</a>
         <a href="#realizacje">Realizacje</a><a href="#cennik">Cennik</a><a href="#pytania">Pytania</a><a href="#kontakt">Kontakt</a>
-        <a href="majsterkowicze.html">Dla majsterkowiczów</a>
+        <a href="majsterkowicze.html">Dla majsterkowiczów</a><a href="projektanci.html">Dla projektantów</a>
       </nav>
     </div>
     <div class="dol">
