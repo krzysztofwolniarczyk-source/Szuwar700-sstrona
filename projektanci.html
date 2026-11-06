@@ -12,7 +12,7 @@
 <meta property="og:locale" content="pl_PL">
 <meta property="og:site_name" content="Wyceniarz. Zaplecze stolarni">
 <meta property="og:title" content="Projekt techniczny mebli dla projektantów i architektów | Wyceniarz">
-<meta property="og:description" content="Ty mierzysz i decydujesz, ja liczę według Twoich zasad: wycena, rysunek, zestawienie formatek i oferta PDF pod Twoją marką. 3 pierwsze wyceny bezpłatnie.">
+<meta property="og:description" content="Projekt techniczny mebli, zestawienia i wizualizacje z Twojego projektu. Stolarz z 20-letnim doświadczeniem; projekt zostaje Twój.">
 <meta property="og:url" content="https://wyceniarz.pl/projektanci">
 <link rel="canonical" href="https://wyceniarz.pl/projektanci">
 <meta property="og:image" content="https://wyceniarz.pl/og-image.jpg">
@@ -669,6 +669,15 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
 .pr-lista{list-style:none;margin-top:28px;display:grid;gap:10px}
 .pr-lista li{background:var(--karta);border:1px solid var(--linia);border-left:3px solid var(--wymiar);border-radius:var(--r);padding:14px 16px;color:var(--grafit)}
 .pr-lista li b{color:var(--atrament)}
+.pr-polecenia{background:var(--biurko)}
+.pr-pol{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,56px);align-items:center}
+.pr-pol h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-top:12px}
+.pr-pol p{margin-top:14px;color:var(--grafit)}.pr-pol p b{color:var(--atrament)}
+.pr-pol-lista{list-style:none;display:grid;gap:10px}
+.pr-pol-lista li{background:var(--karta);border:1px solid var(--linia);border-left:3px solid var(--wymiar);border-radius:var(--r);padding:14px 16px;display:grid;gap:4px}
+.pr-pol-lista li b{font-family:var(--disp)}
+.pr-pol-lista li span{color:var(--grafit);font-size:.95rem}
+@media (max-width:800px){.pr-pol{grid-template-columns:1fr}}
 </style>
 </head>
 
@@ -750,7 +759,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       <li class="krok"><b>04</b><h3>Stolarnia wycenia</h3><p>Z kompletnej dokumentacji szybciej i dokładniej. Ceny mebli podaje stolarnia, nie ja.</p><span class="czas">projekt zostaje Twój</span></li>
     </ol>
     <p class="uwaga rise"><svg viewBox="0 0 24 24"><path d="M4 12h16M12 4v16"/></svg>
-      <span><b>Każdy projekt wyceniam indywidualnie</b> — po obejrzeniu dokumentacji, zanim zaczniemy pracę. Pierwszy projekt pojedynczego mebla robię bezpłatnie, na próbę.</span></p>
+      <span><b>Każdy projekt wyceniam indywidualnie</b> — po obejrzeniu dokumentacji. Cenę i termin znasz, zanim cokolwiek zlecisz, więc decydujesz bez ryzyka.</span></p>
   </div>
 </section>
 
@@ -770,6 +779,24 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       <li><b>Pliki:</b> PDF, a zestawienia także jako CSV/XML.</li>
     </ul>
     <p class="cennik-nota rise"><b>Wycena indywidualna:</b> po obejrzeniu dokumentacji podaję cenę i termin, zanim zaczniemy. Dokumentację przyjmuję w PDF, DWG/DXF albo SketchUp — napisz, w czym pracujesz. Ceny mebli podaje stolarnia; moje zestawienia pozwalają jej policzyć je szybko i dokładnie.</p>
+  </div>
+</section>
+
+<section class="pr-polecenia" id="polecenia">
+  <div class="wrap">
+    <div class="pr-pol rise">
+      <div>
+        <span class="etyk">Polecenia</span>
+        <h2>Dobra współpraca najczęściej zaczyna się od polecenia</h2>
+        <p>Jeśli pracuje Ci się ze mną dobrze, pewnie znasz kogoś, komu też się przyda: projektantkę z Twojego biura, architekta, z którym dzielisz projekty, znajomą z branży.</p>
+        <p><b>Za każde polecenie, które zamieni się we współpracę, oboje dostajecie rabat</b> — Ty na swoje najbliższe zlecenie, a osoba z polecenia na pierwsze. Bez kodów i formularzy: wystarczy, że powoła się na Ciebie.</p>
+      </div>
+      <ul class="pr-pol-lista">
+        <li><b>Ty</b><span>rabat na najbliższe zlecenie za każde udane polecenie — rabaty się sumują</span></li>
+        <li><b>Osoba z polecenia</b><span>rabat na pierwsze zlecenie i ten sam standard dokumentacji, który znasz</span></li>
+        <li><b>Pierwszeństwo</b><span>pracuję sam, więc przyjmuję tyle projektów, żeby dotrzymywać terminów — polecenia mają u mnie pierwszeństwo</span></li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -812,7 +839,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
   <div class="wrap">
     <div class="rise">
       <span class="etyk">Kontakt</span>
-      <h2>Prześlij projekt — <em>pierwszy mebel zrobię bezpłatnie.</em></h2>
+      <h2>Prześlij projekt — <em>cenę i termin poznasz, zanim cokolwiek zlecisz.</em></h2>
       <p>Najszybciej na WhatsAppie: kilka plików i parę słów o tym, czego potrzebujesz. Odpiszę, czy i na kiedy przygotuję dokumentację.</p>
       <a class="btn btn-main" href="https://wa.me/48510864253?text=Dzie%C5%84%20dobry%2C%20jestem%20projektantem%2Farchitektem%20i%20chc%C4%99%20zapyta%C4%87%20o%20wsp%C3%B3%C5%82prac%C4%99." target="_blank" rel="noopener">Napisz na WhatsApp</a>
     </div>
