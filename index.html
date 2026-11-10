@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Wyceny dla stolarni, rozpis dla majsterkowiczów, projekt techniczny dla projektantów | Wyceniarz. Zaplecze stolarni</title>
-<meta name="description" content="Ty montujesz, ja liczę. Dla stolarni: rysunek, zestawienie formatek i okuć, oferta PDF pod Twoją marką, 3 pierwsze wyceny bezpłatnie. Dla majsterkowiczów: rozpis i pliki z rozkroju od 120 zł. Dla projektantów i architektów: projekt techniczny mebli.">
+<title>Wyceny dla stolarni, majsterkowiczów i projektantów | Wyceniarz</title>
+<meta name="description" content="Ty montujesz, ja liczę. Rysunek, zestawienie formatek i okuć, oferta PDF pod Twoją marką. 3 pierwsze wyceny gratis. Także dla majsterkowiczów i projektantów.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#F7F5F0">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pl_PL">
 <meta property="og:site_name" content="Wyceniarz. Zaplecze stolarni">
-<meta property="og:title" content="Wyceny dla stolarni, rozpis dla majsterkowiczów, projekt techniczny dla projektantów | Wyceniarz">
+<meta property="og:title" content="Wyceny dla stolarni, majsterkowiczów i projektantów | Wyceniarz">
 <meta property="og:description" content="Ty montujesz, ja liczę. Rysunek, zestawienie formatek i okuć, oferta PDF pod Twoją marką; wstępna wycena do 2 dni roboczych. 3 pierwsze wyceny bezpłatnie. Osobne oferty dla majsterkowiczów i projektantów.">
 <meta property="og:url" content="https://wyceniarz.pl/">
 <link rel="canonical" href="https://wyceniarz.pl/">
@@ -269,6 +269,8 @@ section+section{border-top:1px solid var(--linia)}
 .menu-mobile.open{transform:none;visibility:visible}
 .menu-mobile a{font-family:var(--disp);font-size:1.35rem;font-weight:700;padding:16px 0;border-bottom:1px solid var(--linia)}
 .menu-mobile .btn{margin-top:22px;border-bottom:0}
+/* menu na niskich ekranach: ostatnie pozycje muszą dać się przewinąć */
+.menu-mobile{overflow-y:auto;overscroll-behavior:contain}
 
 /* ---------- hero ---------- */
 
@@ -658,6 +660,37 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
   .cennik tr.wyroz{background:var(--wymiar-tlo)!important}
   .cennik tr.pilot td,.cennik tr.wyroz td{background:transparent!important}
 }
+
+/* --- audyt konwersji 11.2026: kontakt, cennik na telefonie, pierwszy ekran --- */
+.hero-kontakt,.hero-inni{font-size:.92rem;color:var(--grafit)}
+.hero-kontakt{margin-top:12px}
+.hero-inni{margin-top:4px}
+.hero-kontakt a,.hero-inni a{color:var(--atrament);text-decoration:underline;text-underline-offset:3px}
+.hero-kontakt a:hover,.hero-inni a:hover{color:var(--wymiar)}
+.kk .btn{margin-top:16px}
+.plik-wersje a.plik-online{background:transparent;color:var(--wymiar);border:1px solid var(--wymiar)}
+.plik-wersje a.plik-online:hover{background:var(--wymiar-tlo)}
+.pobierz-nota{margin-top:8px;max-width:680px;color:var(--grafit)}
+.cennik-nota a{color:var(--wymiar);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:640px){
+  .hero{padding-top:28px}
+  .hero .lead .szeroko{display:none}
+  .hero-cta{margin-top:22px}
+  .hero-fakty{margin-top:16px}
+  /* cennik: każdy wiersz jako karta, bez przewijania w bok */
+  .cennik-wrap{overflow:visible;border:0;background:transparent}
+  table.cennik,.cennik tbody{display:block;min-width:0}
+  .cennik thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .cennik tr{display:block;padding:14px 16px;border:1px solid var(--linia);border-radius:var(--r);background:var(--karta)}
+  .cennik tr+tr{margin-top:10px}
+  .cennik td{display:block;padding:0;border:0}
+  .cennik td:first-child{font-weight:700}
+  .cennik td.cena{margin-top:6px;white-space:normal}
+  .cennik td.uw{margin-top:4px}
+}
+@media (max-width:380px){
+  .hero-cta .btn-main{padding-left:12px;padding-right:12px;font-size:.92rem}
+}
 </style>
 </head>
 
@@ -711,15 +744,17 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       <h1><span class="etyk">Biuro wycen i ofert dla stolarni</span> Wycena mebli na wymiar, rysunek techniczny i <em>oferta PDF pod Twoją marką</em></h1>
       <p class="czas-h1">Wycena wstępna zwykle w kilka godzin, najpóźniej w 2 dni robocze.</p>
       <p class="lead">Przesyłasz zapytanie klienta: zdjęcie, szkic albo wymiary. Dostajesz gotową wycenę, rysunek
-        i ofertę PDF pod swoją marką, policzone według <strong>Twoich</strong> zasad konstrukcji.
-        Ty mierzysz, Ty decydujesz o cenie i o tym, co trafia do klienta.</p>
+        i ofertę PDF pod swoją marką<span class="szeroko">, policzone według <strong>Twoich</strong> zasad konstrukcji.
+        Ty mierzysz, Ty decydujesz o cenie i o tym, co trafia do klienta</span>.</p>
       <div class="hero-cta">
-        <a class="btn btn-main" href="https://wa.me/48510864253?text=Dzie%C5%84%20dobry%2C%20wysy%C5%82am%20szkic%20do%20wyceny." target="_blank" rel="noopener">Wyślij szkic – odeślę 3 wyceny gratis</a>
-        <a class="btn btn-ghost" href="#pakiet">Zobacz, co dostajesz</a>
+        <a class="btn btn-main" href="https://wa.me/48510864253?text=Dzie%C5%84%20dobry%2C%20wysy%C5%82am%20szkic%20do%20wyceny." target="_blank" rel="noopener">Wyślij zapytanie, pierwsze 3 wyceny gratis</a>
+        <a class="btn btn-ghost" href="#pakiet">Co dostajesz</a>
       </div>
       <ul class="hero-fakty">
         <li>od <b>120 zł</b> za mebel · płacisz po odbiorze</li>
       </ul>
+      <p class="hero-kontakt">Bez WhatsAppa? Zadzwoń: <a href="tel:+48510864253">510 864 253</a> albo napisz: <a href="mailto:kontakt@wyceniarz.pl?subject=Zapytanie%20o%20wycen%C4%99">kontakt@wyceniarz.pl</a></p>
+      <p class="hero-inni">Robisz meble sam? <a href="majsterkowicze.html">Dla majsterkowiczów</a> · Projektujesz wnętrza? <a href="projektanci.html">Dla projektantów</a></p>
     </div>
 
     <div class="stos rise" aria-label="Pakiet z jednego zapytania: render, rysunek z wymiarami i oferta PDF">
@@ -994,6 +1029,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
     </div>
     <p class="cennik-nota rise"><b>Dla porównania:</b> projektant-freelancer liczy zwykle 150–300 zł za sam rysunek z wizualizacją. Tu za 120–250 zł dostajesz rysunek, zestawienie formatek do piły i gotową ofertę dla klienta.</p>
     <p class="cennik-nota rise">Rysunek, zestawienie, ofertę i rozpis dostajesz w PDF; na życzenie zestawienie i wycenę także jako edytowalny plik XML — wtedy ceny wpisujesz sam, bez podawania mi cennika. Pliki są Twoje i zostają u Ciebie także po zakończeniu współpracy. Pełna oferta, zasady budowy mebli i lista na start współpracy (do wypełnienia) są <a href="#pobierz">do pobrania</a> niżej.</p>
+    <p class="cennik-nota rise">Masz już zapytanie od klienta? <a href="https://wa.me/48510864253?text=Dzie%C5%84%20dobry%2C%20wysy%C5%82am%20szkic%20do%20wyceny." target="_blank" rel="noopener">Wyślij je na WhatsApp</a>: pierwsze 3 wyceny są bezpłatne.</p>
   </div>
 </section>
 
@@ -1105,7 +1141,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
         <span class="etyk">Telefon · WhatsApp</span>
         <strong><a href="tel:+48510864253">510 864 253</a></strong>
         <p>Krzysztof. Najszybciej na WhatsAppie — zdjęcie i wymiary wystarczą na start.</p>
-        <a class="line" href="https://wa.me/48510864253" target="_blank" rel="noopener">Napisz na WhatsApp →</a>
+        <a class="btn btn-main" href="https://wa.me/48510864253?text=Dzie%C5%84%20dobry%2C%20wysy%C5%82am%20pierwsze%20zapytanie%20do%20wyceny." target="_blank" rel="noopener">Napisz na WhatsApp</a>
       </div>
       <div class="karta kk rise">
         <span class="etyk">E-mail</span>
@@ -1116,7 +1152,8 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       </div>
     </div>
 
-    <h3 class="pobierz-h rise" id="pobierz">Do pobrania: lista na start, zasady budowy mebli i oferta</h3>
+    <h3 class="pobierz-h rise" id="pobierz">Po pierwszym zapytaniu: lista na start, zasady budowy mebli i oferta do pobrania</h3>
+    <p class="pobierz-nota rise">Na początek wystarczy wiadomość na WhatsAppie. Formularze wypełniasz raz, kiedy pierwsze zapytanie jest już u mnie.</p>
     <div class="pobierz rise">
       <div class="karta plik plik-wyroz">
         <span class="etyk">Do wypełnienia · 2 strony</span>
@@ -1306,6 +1343,43 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
     }
   ]
 }
+</script>
+<script>
+/* Liczenie kliknięć w kontakt (GoatCounter, bez cookies). Ten skrypt tylko opisuje
+   linki i przyciski atrybutem data-goatcounter-click; zlicza je skrypt statystyk niżej.
+   Nazwa zdarzenia: klik-<co>-<strona>-<miejsce>, np. klik-whatsapp-glowna-hero. */
+(function(){
+  var plik = location.pathname.split("/").pop().replace(/\.html$/, "");
+  var strona = (!plik || plik === "index") ? "glowna" : plik;
+  function co(el){
+    if (el.id === "wa") return "wyslij-whatsapp";
+    if (el.id === "mail") return "wyslij-mail";
+    if (el.id === "kopiuj") return "kopiuj";
+    var h = el.getAttribute("href") || "", m;
+    if (h.indexOf("wa.me/") > -1) return "whatsapp";
+    if (h.indexOf("tel:") === 0) return "telefon";
+    if (h.indexOf("mailto:") === 0) return "mail";
+    if ((m = /formularz-(start|zasady)/.exec(h))) return "formularz-" + m[1];
+    if ((m = /pliki\/wyceniarz-([a-z-]+)\.(pdf|docx)/.exec(h))) return "plik-" + m[1] + "-" + m[2];
+    return "";
+  }
+  function miejsce(el){
+    if (el.closest(".pasek")) return "pasek";
+    if (el.closest(".naglowek, .menu-mobile")) return "menu";
+    if (el.closest("footer")) return "stopka";
+    var s = el.closest("section[id]");
+    if (!s) return "tresc";
+    return s.id === "gora" ? "hero" : s.id;
+  }
+  var lista = document.querySelectorAll("a[href], button#wa, button#mail, button#kopiuj");
+  for (var i = 0; i < lista.length; i++){
+    var el = lista[i], c = co(el);
+    if (!c || el.hasAttribute("data-goatcounter-click")) continue;
+    var m = el.tagName === "BUTTON" ? "" : miejsce(el);   /* przyciski wysyłki formularza: sama nazwa strony wystarcza */
+    el.setAttribute("data-goatcounter-click", "klik-" + c + "-" + strona + (m ? "-" + m : ""));
+    el.setAttribute("data-goatcounter-title", c + " · " + strona + (m ? " · " + m : ""));
+  }
+})();
 </script>
 <script data-goatcounter="https://szuwar700.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

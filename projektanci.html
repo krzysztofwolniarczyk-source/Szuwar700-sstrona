@@ -269,6 +269,8 @@ section+section{border-top:1px solid var(--linia)}
 .menu-mobile.open{transform:none;visibility:visible}
 .menu-mobile a{font-family:var(--disp);font-size:1.35rem;font-weight:700;padding:16px 0;border-bottom:1px solid var(--linia)}
 .menu-mobile .btn{margin-top:22px;border-bottom:0}
+/* menu na niskich ekranach: ostatnie pozycje muszą dać się przewinąć */
+.menu-mobile{overflow-y:auto;overscroll-behavior:contain}
 
 /* ---------- hero ---------- */
 
@@ -639,6 +641,13 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
 @media (max-width:700px){.faq-zw{grid-template-columns:1fr}}
 
 .pr-h1{font-size:clamp(1.9rem,3.8vw,2.8rem);margin-top:12px}
+.sek-naglowek p.pr-nota{margin-top:12px;font-size:.92rem}
+.pr-nota a{color:var(--atrament);text-decoration:underline;text-underline-offset:3px}
+.pr-nota a:hover{color:var(--wymiar)}
+@media (max-width:640px){
+  .pr-hero{padding-top:28px}
+  .pr-hero .hero-cta{margin-top:20px}
+}
 .pr-wybor{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
 .pr-karta{display:grid;gap:8px;text-decoration:none;color:inherit;border-left:3px solid var(--wymiar)!important}
 .pr-karta strong{font-family:var(--disp);font-size:1.3rem}
@@ -692,14 +701,13 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
     </a>
 
     <nav class="nav" aria-label="Menu główne">
-      <a href="./#dla-kogo">Dla kogo</a>
-      <a href="./#pakiet">Co dostajesz</a>
-      <a href="./#jak">Jak to działa</a>
-      <a href="realizacje.html">Realizacje</a>
-      <a href="./#cennik">Cennik</a>
-      <a href="./#pytania">Pytania</a>
-      <a href="./#pilotaz">Pilotaż</a>
-      <a href="./#kontakt">Kontakt</a>
+      <a href="#projektanci">Dla projektantów</a>
+      <a href="#architekci">Dla architektów</a>
+      <a href="#polecenia">Polecenia</a>
+      <a href="#realizacje">Przykład</a>
+      <a href="#pytania">Pytania</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="./">Dla stolarni</a>
     </nav>
 
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Otwórz menu">
@@ -709,27 +717,29 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
 </header>
 
 <nav class="menu-mobile" id="menu-mobile" aria-label="Menu mobilne">
-  <a href="./#dla-kogo">Dla kogo</a>
-  <a href="./#pakiet">Co dostajesz</a>
-  <a href="./#jak">Jak to działa</a>
-  <a href="realizacje.html">Realizacje</a>
-  <a href="./#cennik">Cennik</a>
-  <a href="./#pytania">Pytania</a>
-  <a href="./#kontakt">Kontakt</a>
-  <a href="majsterkowicze.html">Robisz meble sam?</a>
-  <a href="projektanci.html">Projektant? Architekt?</a>
-  <a href="./#pilotaz">Pilotaż</a>
+  <a href="#projektanci">Dla projektantów</a>
+  <a href="#architekci">Dla architektów</a>
+  <a href="#polecenia">Polecenia</a>
+  <a href="#realizacje">Przykład</a>
+  <a href="#pytania">Pytania</a>
+  <a href="#kontakt">Kontakt</a>
+  <a href="./">Masz stolarnię? Oferta dla stolarni</a>
+  <a class="btn btn-main" href="https://wa.me/48510864253?text=Dzie%C5%84%20dobry%2C%20jestem%20projektantem%2Farchitektem%20i%20chc%C4%99%20zapyta%C4%87%20o%20wsp%C3%B3%C5%82prac%C4%99." target="_blank" rel="noopener">Prześlij projekt na WhatsApp</a>
 </nav>
 
 <main id="tresc">
 
-<section class="pr-hero">
+<section class="pr-hero" id="gora">
   <div class="wrap">
     <div class="sek-naglowek rise">
       <span class="etyk">Dla projektantów wnętrz i architektów</span>
       <div class="wymiar lewa"><span>Projekt techniczny · zestawienia · wizualizacje</span></div>
       <h1 class="pr-h1">Meble z Twojego projektu, przygotowane tak, żeby stolarnia mogła je zrobić</h1>
       <p>Jestem stolarzem, od 20 lat w meblach na wymiar. Współprowadziłem stolarnię K&amp;B pod Olsztynem i montowałem meble w hotelach, sklepach i showroomach dla zagranicznych kontrahentów. Projekt zostaje Twój: nie kontaktuję się z Twoimi klientami i nie biorę prowizji od stolarni.</p>
+      <div class="hero-cta">
+        <a class="btn btn-main" href="https://wa.me/48510864253?text=Dzie%C5%84%20dobry%2C%20jestem%20projektantem%2Farchitektem%20i%20chc%C4%99%20zapyta%C4%87%20o%20wsp%C3%B3%C5%82prac%C4%99." target="_blank" rel="noopener">Prześlij projekt</a>
+      </div>
+      <p class="pr-nota">Cenę i termin poznasz, zanim cokolwiek zlecisz. Wolisz telefon albo e-mail? <a href="#kontakt">Kontakt</a></p>
     </div>
     <div class="pr-wybor rise">
       <a class="karta pr-karta" href="#projektanci"><span class="etyk">Projektuję wnętrza</span><strong>Techniczna pomoc w konstrukcji mebli</strong><span>Z Twojej koncepcji robię projekt techniczny: wymiary, przekroje, okucia, uwagi konstrukcyjne i wizualizację.</span><em>Zobacz zakres →</em></a>
@@ -876,8 +886,8 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
 </footer>
 
 <div class="pasek" id="pasek">
-  <a class="btn btn-main" href="https://wa.me/48510864253?text=Dzie%C5%84%20dobry%2C%20wysy%C5%82am%20szkic%20do%20wyceny." target="_blank" rel="noopener">Wyślij szkic</a>
-  <a class="btn btn-ghost" href="./#pilotaz">Pilotaż</a>
+  <a class="btn btn-main" href="https://wa.me/48510864253?text=Dzie%C5%84%20dobry%2C%20jestem%20projektantem%2Farchitektem%20i%20chc%C4%99%20zapyta%C4%87%20o%20wsp%C3%B3%C5%82prac%C4%99." target="_blank" rel="noopener">Prześlij projekt</a>
+  <a class="btn btn-ghost" href="#kontakt">Kontakt</a>
 </div>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Powiększony obraz" hidden>
@@ -973,6 +983,43 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
 })();
 </script>
 
+<script>
+/* Liczenie kliknięć w kontakt (GoatCounter, bez cookies). Ten skrypt tylko opisuje
+   linki i przyciski atrybutem data-goatcounter-click; zlicza je skrypt statystyk niżej.
+   Nazwa zdarzenia: klik-<co>-<strona>-<miejsce>, np. klik-whatsapp-glowna-hero. */
+(function(){
+  var plik = location.pathname.split("/").pop().replace(/\.html$/, "");
+  var strona = (!plik || plik === "index") ? "glowna" : plik;
+  function co(el){
+    if (el.id === "wa") return "wyslij-whatsapp";
+    if (el.id === "mail") return "wyslij-mail";
+    if (el.id === "kopiuj") return "kopiuj";
+    var h = el.getAttribute("href") || "", m;
+    if (h.indexOf("wa.me/") > -1) return "whatsapp";
+    if (h.indexOf("tel:") === 0) return "telefon";
+    if (h.indexOf("mailto:") === 0) return "mail";
+    if ((m = /formularz-(start|zasady)/.exec(h))) return "formularz-" + m[1];
+    if ((m = /pliki\/wyceniarz-([a-z-]+)\.(pdf|docx)/.exec(h))) return "plik-" + m[1] + "-" + m[2];
+    return "";
+  }
+  function miejsce(el){
+    if (el.closest(".pasek")) return "pasek";
+    if (el.closest(".naglowek, .menu-mobile")) return "menu";
+    if (el.closest("footer")) return "stopka";
+    var s = el.closest("section[id]");
+    if (!s) return "tresc";
+    return s.id === "gora" ? "hero" : s.id;
+  }
+  var lista = document.querySelectorAll("a[href], button#wa, button#mail, button#kopiuj");
+  for (var i = 0; i < lista.length; i++){
+    var el = lista[i], c = co(el);
+    if (!c || el.hasAttribute("data-goatcounter-click")) continue;
+    var m = el.tagName === "BUTTON" ? "" : miejsce(el);   /* przyciski wysyłki formularza: sama nazwa strony wystarcza */
+    el.setAttribute("data-goatcounter-click", "klik-" + c + "-" + strona + (m ? "-" + m : ""));
+    el.setAttribute("data-goatcounter-title", c + " · " + strona + (m ? " · " + m : ""));
+  }
+})();
+</script>
 <script data-goatcounter="https://szuwar700.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

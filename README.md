@@ -28,6 +28,8 @@ fonty/                  Lora, Lato, IBM Plex Mono (woff2, latin + latin-ext)
 ## Publikacja
 
 GitHub Pages z gałęzi `main`, domena `wyceniarz.pl` (plik `CNAME`). Statystyki: GoatCounter
-(szuwar700.goatcounter.com). Kontakt na stronie: kontakt@wyceniarz.pl (główny),
+(szuwar700.goatcounter.com). Kliknięcia w kontakt (WhatsApp, telefon, mail, formularze, pliki) są
+zliczane jako zdarzenia `klik-<co>-<strona>-<miejsce>`, np. `klik-whatsapp-glowna-hero`: opisuje je
+krótki skrypt na końcu każdej podstrony, tuż przed skryptem GoatCountera. Kontakt na stronie: kontakt@wyceniarz.pl (główny),
 wyceniarz@zapleczestolarni.pl (drugi), WhatsApp 510 864 253.
 Ceny są w `index.html` (sekcja Cennik) i w `pliki/wyceniarz-oferta.pdf` — zmieniaj oba miejsca.

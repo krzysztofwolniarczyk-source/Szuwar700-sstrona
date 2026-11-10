@@ -269,6 +269,8 @@ section+section{border-top:1px solid var(--linia)}
 .menu-mobile.open{transform:none;visibility:visible}
 .menu-mobile a{font-family:var(--disp);font-size:1.35rem;font-weight:700;padding:16px 0;border-bottom:1px solid var(--linia)}
 .menu-mobile .btn{margin-top:22px;border-bottom:0}
+/* menu na niskich ekranach: ostatnie pozycje muszą dać się przewinąć */
+.menu-mobile{overflow-y:auto;overscroll-behavior:contain}
 
 /* ---------- hero ---------- */
 
@@ -720,7 +722,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
   <a href="#cena">Cena</a>
   <a href="#pytania">Pytania</a>
   <a href="/">Masz stolarnię? Oferta dla stolarni</a>
-  <a class="btn btn-main" href="https://wa.me/48510864253" target="_blank" rel="noopener">Wyślij szkic na WhatsApp</a>
+  <a class="btn btn-main" href="https://wa.me/48510864253?text=Dzie%C5%84%20dobry%2C%20chc%C4%99%20zrobi%C4%87%20mebel%20sam%20i%20potrzebuj%C4%99%20rozpisu." target="_blank" rel="noopener">Wyślij szkic na WhatsApp</a>
 </nav>
 
 <main id="tresc">
@@ -1017,7 +1019,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
 </footer>
 
 <div class="pasek">
-  <a class="btn btn-main" href="https://wa.me/48510864253" target="_blank" rel="noopener">Wyślij szkic</a>
+  <a class="btn btn-main" href="https://wa.me/48510864253?text=Dzie%C5%84%20dobry%2C%20chc%C4%99%20zrobi%C4%87%20mebel%20sam%20i%20potrzebuj%C4%99%20rozpisu." target="_blank" rel="noopener">Wyślij szkic</a>
   <a class="btn btn-ghost" href="#cena">Cena</a>
 </div>
 
@@ -1128,6 +1130,43 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
     {"@type": "Offer", "name": "Kuchnia albo większa zabudowa", "price": "180-250", "priceCurrency": "PLN"}
   ]
 }
+</script>
+<script>
+/* Liczenie kliknięć w kontakt (GoatCounter, bez cookies). Ten skrypt tylko opisuje
+   linki i przyciski atrybutem data-goatcounter-click; zlicza je skrypt statystyk niżej.
+   Nazwa zdarzenia: klik-<co>-<strona>-<miejsce>, np. klik-whatsapp-glowna-hero. */
+(function(){
+  var plik = location.pathname.split("/").pop().replace(/\.html$/, "");
+  var strona = (!plik || plik === "index") ? "glowna" : plik;
+  function co(el){
+    if (el.id === "wa") return "wyslij-whatsapp";
+    if (el.id === "mail") return "wyslij-mail";
+    if (el.id === "kopiuj") return "kopiuj";
+    var h = el.getAttribute("href") || "", m;
+    if (h.indexOf("wa.me/") > -1) return "whatsapp";
+    if (h.indexOf("tel:") === 0) return "telefon";
+    if (h.indexOf("mailto:") === 0) return "mail";
+    if ((m = /formularz-(start|zasady)/.exec(h))) return "formularz-" + m[1];
+    if ((m = /pliki\/wyceniarz-([a-z-]+)\.(pdf|docx)/.exec(h))) return "plik-" + m[1] + "-" + m[2];
+    return "";
+  }
+  function miejsce(el){
+    if (el.closest(".pasek")) return "pasek";
+    if (el.closest(".naglowek, .menu-mobile")) return "menu";
+    if (el.closest("footer")) return "stopka";
+    var s = el.closest("section[id]");
+    if (!s) return "tresc";
+    return s.id === "gora" ? "hero" : s.id;
+  }
+  var lista = document.querySelectorAll("a[href], button#wa, button#mail, button#kopiuj");
+  for (var i = 0; i < lista.length; i++){
+    var el = lista[i], c = co(el);
+    if (!c || el.hasAttribute("data-goatcounter-click")) continue;
+    var m = el.tagName === "BUTTON" ? "" : miejsce(el);   /* przyciski wysyłki formularza: sama nazwa strony wystarcza */
+    el.setAttribute("data-goatcounter-click", "klik-" + c + "-" + strona + (m ? "-" + m : ""));
+    el.setAttribute("data-goatcounter-title", c + " · " + strona + (m ? " · " + m : ""));
+  }
+})();
 </script>
 <script data-goatcounter="https://szuwar700.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

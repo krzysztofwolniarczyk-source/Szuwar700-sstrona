@@ -219,6 +219,43 @@ footer a{color:inherit}
 </section>
 </main>
 <footer><div class="wrap">Wyceniarz. Zaplecze stolarni · <a href="mailto:kontakt@wyceniarz.pl">kontakt@wyceniarz.pl</a></div></footer>
+<script>
+/* Liczenie kliknięć w kontakt (GoatCounter, bez cookies). Ten skrypt tylko opisuje
+   linki i przyciski atrybutem data-goatcounter-click; zlicza je skrypt statystyk niżej.
+   Nazwa zdarzenia: klik-<co>-<strona>-<miejsce>, np. klik-whatsapp-glowna-hero. */
+(function(){
+  var plik = location.pathname.split("/").pop().replace(/\.html$/, "");
+  var strona = (!plik || plik === "index") ? "glowna" : plik;
+  function co(el){
+    if (el.id === "wa") return "wyslij-whatsapp";
+    if (el.id === "mail") return "wyslij-mail";
+    if (el.id === "kopiuj") return "kopiuj";
+    var h = el.getAttribute("href") || "", m;
+    if (h.indexOf("wa.me/") > -1) return "whatsapp";
+    if (h.indexOf("tel:") === 0) return "telefon";
+    if (h.indexOf("mailto:") === 0) return "mail";
+    if ((m = /formularz-(start|zasady)/.exec(h))) return "formularz-" + m[1];
+    if ((m = /pliki\/wyceniarz-([a-z-]+)\.(pdf|docx)/.exec(h))) return "plik-" + m[1] + "-" + m[2];
+    return "";
+  }
+  function miejsce(el){
+    if (el.closest(".pasek")) return "pasek";
+    if (el.closest(".naglowek, .menu-mobile")) return "menu";
+    if (el.closest("footer")) return "stopka";
+    var s = el.closest("section[id]");
+    if (!s) return "tresc";
+    return s.id === "gora" ? "hero" : s.id;
+  }
+  var lista = document.querySelectorAll("a[href], button#wa, button#mail, button#kopiuj");
+  for (var i = 0; i < lista.length; i++){
+    var el = lista[i], c = co(el);
+    if (!c || el.hasAttribute("data-goatcounter-click")) continue;
+    var m = el.tagName === "BUTTON" ? "" : miejsce(el);   /* przyciski wysyłki formularza: sama nazwa strony wystarcza */
+    el.setAttribute("data-goatcounter-click", "klik-" + c + "-" + strona + (m ? "-" + m : ""));
+    el.setAttribute("data-goatcounter-title", c + " · " + strona + (m ? " · " + m : ""));
+  }
+})();
+</script>
 <script data-goatcounter="https://szuwar700.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
