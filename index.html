@@ -345,6 +345,12 @@ section+section{border-top:1px solid var(--linia)}
 
 /* ---------- co dostajesz ---------- */
 
+/* rozkrój: figura Hairline (hairline-rozkroj.js) */
+.rozkroj{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(18px,4vw,48px);align-items:center;margin-top:14px}
+.rozkroj-fig{--hairline-plate:var(--karta);--hairline-hi:var(--wymiar);--hairline-edge:#8E8B84;--hairline-mid:#B9B5AC;--hairline-lo:var(--linia);--hairline-stroke:1}
+.rozkroj h3{margin:10px 0 8px}
+.rozkroj-odczyt{font-variant-numeric:tabular-nums;color:var(--wymiar-ciemny);font-weight:700;min-height:1.5em}
+@media (max-width:760px){.rozkroj{grid-template-columns:1fr}}
 .pakiet{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:48px}
 @media (max-width:1240px){.pakiet{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .zest.rozpis .h,.zest.rozpis .w{grid-template-columns:1.7fr .8fr .4fr .35fr}
@@ -924,6 +930,16 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
       </article>
     </div>
 
+
+    <div class="karta rozkroj rise" data-rozkroj-blok>
+      <div class="rozkroj-fig" data-rozkroj role="img" aria-label="Przykładowy rozkrój: arkusz płyty 2800 na 2070 mm pocięty na dziewięć formatek. Formatka pod kursorem unosi się z arkusza, pozostałe odsuwają się od niej."></div>
+      <div>
+        <span class="etyk">Pliki z rozkroju</span>
+        <h3>Arkusz 2800 × 2070, każda formatka z wymiarem</h3>
+        <p>Rozkrój liczę z tego samego zestawienia co ofertę, z rzazem piły 4 mm. Do hurtowni idzie plik, a nie przepisywanie wymiarów z kartki.</p>
+        <p class="rozkroj-odczyt" data-rozkroj-odczyt aria-live="polite">Najedź na formatkę albo jej dotknij, żeby zobaczyć wymiar.</p>
+      </div>
+    </div>
     <p class="uwaga rise"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
       <span><b>Nic nie idzie do Twojego klienta bez Twojej zgody.</b> Cennik, marże i dane klientów zostają u Ciebie.
       Dane każdej stolarni trzymam osobno, nikt inny ich nie widzi. Podpisujemy umowę o poufności i powierzeniu danych; umowa zakazuje mi kontaktu z Twoimi klientami. Nie chcesz podawać cen w ogóle? Zamawiasz wycenę bez cen — rysunek, zestawienie, okucia i rozpis, a ceny wpisujesz sam (na życzenie w edytowalnym pliku XML).</span></p>
@@ -1360,6 +1376,7 @@ table.cennik{width:100%;border-collapse:collapse;min-width:640px}
   }
 })();
 </script>
+<script src="hairline-rozkroj.js" defer></script>
 <script data-goatcounter="https://szuwar700.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
